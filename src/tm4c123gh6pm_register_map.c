@@ -1,3 +1,19 @@
+// I've decided to write this file after I saw a post on piazza.com for the edX UT. 6.02X Embedded
+// Systems - Shape The World class. Some student partially mapped GPIO registers to a structure. I
+// thought it would be nice to have all the registers mapped.
+//
+// License:
+// This software is provided as is. No warranty of any kind. You may use it, modify it, do whatever
+// you want with it. It can be used in any projects, open source or commercial. There is only one
+// condition for using it. Please include (or do not remove) the orignal authors comment lines
+// somewhere at the top of the file
+//
+// Original authors: Rail Shafigulin and anonymous student from UT. 6.02X Embedded Systems - Shape
+//                   the world class.
+//
+// By the way if anyone is able to track down this student I would gladly include his/her name to
+// this file if he/she doesn't mind.
+
 #include "tm4c123gh6pm_register_map.h"
 
 /* Mapping */
@@ -18,6 +34,11 @@ UARTRegisterBasePtr pUart4 = (UARTRegisterBasePtr)UART4_REGISTER_BASE_ADDR;
 UARTRegisterBasePtr pUart5 = (UARTRegisterBasePtr)UART5_REGISTER_BASE_ADDR;
 UARTRegisterBasePtr pUart6 = (UARTRegisterBasePtr)UART6_REGISTER_BASE_ADDR;
 UARTRegisterBasePtr pUart7 = (UARTRegisterBasePtr)UART7_REGISTER_BASE_ADDR;
+
+SSIRegisterBasePtr pSsi0 = (SSIRegisterBasePtr)SSI0_REGISTER_BASE_ADDR;
+SSIRegisterBasePtr pSsi1 = (SSIRegisterBasePtr)SSI1_REGISTER_BASE_ADDR;
+SSIRegisterBasePtr pSsi2 = (SSIRegisterBasePtr)SSI2_REGISTER_BASE_ADDR;
+SSIRegisterBasePtr pSsi3 = (SSIRegisterBasePtr)SSI3_REGISTER_BASE_ADDR;
 
 ADCRegisterBasePtr pAdc0 = (ADCRegisterBasePtr)ADC0_REGISTER_BASE_ADDR;
 ADCRegisterBasePtr pAdc1 = (ADCRegisterBasePtr)ADC1_REGISTER_BASE_ADDR;

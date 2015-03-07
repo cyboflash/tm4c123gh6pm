@@ -1,3 +1,19 @@
+// I've decided to write this file after I saw a post on piazza.com for the edX UT. 6.02X Embedded
+// Systems - Shape The World class. Some student partially mapped GPIO registers to a structure. I
+// thought it would be nice to have all the registers mapped.
+//
+// License:
+// This software is provided as is. No warranty of any kind. You may use it, modify it, do whatever
+// you want with it. It can be used in any projects, open source or commercial. There is only one
+// condition for using it. Please include (or do not remove) the orignal authors comment lines
+// somewhere at the top of the file
+//
+// Original authors: Rail Shafigulin and anonymous student from UT. 6.02X Embedded Systems - Shape
+//                   the world class.
+//
+// By the way if anyone is able to track down this student I would gladly include his/her name to
+// this file if he/she doesn't mind.
+
 #ifndef __TM4C123GH6PM_REGISTER_MAP_H__
 #define __TM4C123GH6PM_REGISTER_MAP_H__
 
@@ -1421,33 +1437,182 @@ typedef struct UARTRegisterBase_t {
 /* Define a const pointer to a volatile  UARTRegisterBasePtr */
 typedef UARTRegisterBase volatile * const UARTRegisterBasePtr;
 
-/* Base Addresses */
-#define SYSTEM_TICK_REGISTER_OFFSET        (0x00000010)
-#define NVIC_REGISTER_OFFSET               (0x00000100)
-#define PERIPHERALS_REGISTER_BASE_ADDR     (0xE000E000)
+/* SSI */
+typedef union SSICR0Register_t {
+  uint32_t value;
+  struct {
+    uint32_t DSS      : 4,
+             FRF      : 2,
+             SPO      : 1,
+             SPH      : 1,
+             SCR      : 8,
+             reserved : 16;
+  } field;
+} SSICR0Register;
+
+typedef union SSICR1Register_t {
+  uint32_t value;
+  struct {
+    uint32_t LBM      : 1,
+             SSE      : 1,
+             MS       : 1,
+             SOD      : 1,
+             EOT      : 1,
+             reserved : 27;
+  } field;
+} SSICR1Register;
+
+typedef union SSIDRRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t DATA     : 16,
+             reserved : 16;
+  } field;
+} SSIDRRegister;
+
+typedef union SSISRRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t TFE      : 1,
+             TNF      : 1,
+             RNE      : 1,
+             RFF      : 1,
+             BSY      : 1,
+             reserved : 27;
+  } field;
+} SSISRRegister;
+
+typedef union SSICPSRRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t CPSDVSR  : 8,
+             reserved : 24;
+  } field;
+} SSICPSRRegister;
+
+typedef union SSIInterruptRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t ROR      : 1,
+             RT       : 1,
+             RX       : 1,
+             TX       : 1,
+             reserved : 28;
+  } field;
+} SSIInterruptRegister;
+
+typedef SSIInterruptRegister SSIIMRegister;
+typedef SSIInterruptRegister SSIRISRegister;
+typedef SSIInterruptRegister SSIMISRegister;
+
+typedef union SSIICRRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t RORIC    : 1,
+             RTIC     : 1,
+             reserved : 30;
+  } field;
+} SSIICRRegister;
+
+typedef union SSIDMACTLRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t RXDMAE   : 1,
+             TXDMAE   : 1,
+             reserved : 30;
+  } field;
+} SSIDMACTLRegister;
+
+typedef union SSICCRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t CS       : 4,
+             reserved : 28;
+  } field;
+} SSICCRegister;
+
+typedef PeriphIDRegister SSIPeriphIDRegister;
+
+typedef SSIPeriphIDRegister SSIPeriphID0Register;
+typedef SSIPeriphIDRegister SSIPeriphID1Register;
+typedef SSIPeriphIDRegister SSIPeriphID2Register;
+typedef SSIPeriphIDRegister SSIPeriphID3Register;
+typedef SSIPeriphIDRegister SSIPeriphID4Register;
+typedef SSIPeriphIDRegister SSIPeriphID5Register;
+typedef SSIPeriphIDRegister SSIPeriphID6Register;
+typedef SSIPeriphIDRegister SSIPeriphID7Register;
+
+typedef PCellIDRegister SSIPCellIDRegister;
+
+typedef SSIPCellIDRegister SSIPCellID0Register;
+typedef SSIPCellIDRegister SSIPCellID1Register;
+typedef SSIPCellIDRegister SSIPCellID2Register;
+typedef SSIPCellIDRegister SSIPCellID3Register;
+
+typedef struct SSIRegisterBase_t {
+                                         // Offset
+  SSICR0Register       SSICR0;           // 0x000
+  SSICR1Register       SSICR1;           // 0x004
+  SSIDRRegister        SSIDR;            // 0x008
+  SSISRRegister        SSISR;            // 0x00C
+  SSICPSRRegister      SSICPSR;          // 0x010
+  SSIIMRegister        SSIIM;            // 0x014
+  SSIRISRegister       SSIRIS;           // 0x018
+  SSIMISRegister       SSIMIS;           // 0x01C
+  SSIICRRegister       SSIICR;           // 0x020
+  SSIDMACTLRegister    SSIDMACTL;        // 0x024
+  uint8_t              reserved0[0xFA0]; // 0x028
+  SSICCRegister        SSICC;            // 0xFC8
+  uint8_t              reserved1[4];     // 0xFCC
+  SSIPeriphID4Register SSIPeriphID4;     // 0xFD0
+  SSIPeriphID5Register SSIPeriphID5;     // 0xFD4
+  SSIPeriphID6Register SSIPeriphID6;     // 0xFD8
+  SSIPeriphID7Register SSIPeriphID7;     // 0xFDC
+  SSIPeriphID0Register SSIPeriphID0;     // 0xFE0
+  SSIPeriphID1Register SSIPeriphID1;     // 0xFE4
+  SSIPeriphID2Register SSIPeriphID2;     // 0xFE8
+  SSIPeriphID3Register SSIPeriphID3;     // 0xFEC
+  SSIPCellID0Register  SSIPCellID0;      // 0xFF0
+  SSIPCellID1Register  SSIPCellID1;      // 0xFF4
+  SSIPCellID2Register  SSIPCellID2;      // 0xFF8
+  SSIPCellID3Register  SSIPCellID3;      // 0xFFC
+} SSIRegisterBase;
+
+/* Define a const pointer to a volatile  SSIRegisterBasePtr */
+typedef SSIRegisterBase volatile * const SSIRegisterBasePtr;
+
+/* Base Addresses and Offsets */
+#define SYSTEM_TICK_REGISTER_OFFSET        ((unsigned long)0x00000010)
+#define NVIC_REGISTER_OFFSET               ((unsigned long)0x00000100)
+#define PERIPHERALS_REGISTER_BASE_ADDR     ((unsigned long)0xE000E000)
 #define SYSTEM_TICK_REGISTER_BASE_ADDR     (PERIPHERALS_REGISTER_BASE_ADDR)
 #define NVIC_REGISTER_BASE_ADDR            (PERIPHERALS_REGISTER_BASE_ADDR)
 
-#define SYSTEM_CONTROL_REGISTER_BASE_ADDR (0x400FE000)
+#define SYSTEM_CONTROL_REGISTER_BASE_ADDR ((unsigned long)0x400FE000)
 
-#define GPIO_APB_PORTA_REGISTER_BASE_ADDR (0x40004000)
-#define GPIO_APB_PORTB_REGISTER_BASE_ADDR (0x40005000)
-#define GPIO_APB_PORTC_REGISTER_BASE_ADDR (0x40006000)
-#define GPIO_APB_PORTD_REGISTER_BASE_ADDR (0x40007000)
-#define GPIO_APB_PORTE_REGISTER_BASE_ADDR (0x40024000)
-#define GPIO_APB_PORTF_REGISTER_BASE_ADDR (0x40025000)
+#define GPIO_APB_PORTA_REGISTER_BASE_ADDR ((unsigned long)0x40004000)
+#define GPIO_APB_PORTB_REGISTER_BASE_ADDR ((unsigned long)0x40005000)
+#define GPIO_APB_PORTC_REGISTER_BASE_ADDR ((unsigned long)0x40006000)
+#define GPIO_APB_PORTD_REGISTER_BASE_ADDR ((unsigned long)0x40007000)
+#define GPIO_APB_PORTE_REGISTER_BASE_ADDR ((unsigned long)0x40024000)
+#define GPIO_APB_PORTF_REGISTER_BASE_ADDR ((unsigned long)0x40025000)
 
-#define ADC0_REGISTER_BASE_ADDR (0x40038000)
-#define ADC1_REGISTER_BASE_ADDR (0x40039000)
+#define ADC0_REGISTER_BASE_ADDR ((unsigned long)0x40038000)
+#define ADC1_REGISTER_BASE_ADDR ((unsigned long)0x40039000)
 
-#define UART0_REGISTER_BASE_ADDR (0x4000C000)
-#define UART1_REGISTER_BASE_ADDR (0x4000D000)
-#define UART2_REGISTER_BASE_ADDR (0x4000E000)
-#define UART3_REGISTER_BASE_ADDR (0x4000F000)
-#define UART4_REGISTER_BASE_ADDR (0x40010000)
-#define UART5_REGISTER_BASE_ADDR (0x40011000)
-#define UART6_REGISTER_BASE_ADDR (0x40012000)
-#define UART7_REGISTER_BASE_ADDR (0x40013000)
+#define UART0_REGISTER_BASE_ADDR ((unsigned long)0x4000C000)
+#define UART1_REGISTER_BASE_ADDR ((unsigned long)0x4000D000)
+#define UART2_REGISTER_BASE_ADDR ((unsigned long)0x4000E000)
+#define UART3_REGISTER_BASE_ADDR ((unsigned long)0x4000F000)
+#define UART4_REGISTER_BASE_ADDR ((unsigned long)0x40010000)
+#define UART5_REGISTER_BASE_ADDR ((unsigned long)0x40011000)
+#define UART6_REGISTER_BASE_ADDR ((unsigned long)0x40012000)
+#define UART7_REGISTER_BASE_ADDR ((unsigned long)0x40013000)
+
+#define SSI0_REGISTER_BASE_ADDR ((unsigned long)0x40008000)
+#define SSI1_REGISTER_BASE_ADDR ((unsigned long)0x40009000)
+#define SSI2_REGISTER_BASE_ADDR ((unsigned long)0x4000A000)
+#define SSI3_REGISTER_BASE_ADDR ((unsigned long)0x4000B000)
 
 extern PeripheralsRegisterBasePtr pPeripherals;
 #define pSystemTick (&pPeripherals->systemTick)
@@ -1471,6 +1636,11 @@ extern UARTRegisterBasePtr pUart4;
 extern UARTRegisterBasePtr pUart5;
 extern UARTRegisterBasePtr pUart6;
 extern UARTRegisterBasePtr pUart7;
+
+extern SSIRegisterBasePtr pSsi0;
+extern SSIRegisterBasePtr pSsi1;
+extern SSIRegisterBasePtr pSsi2;
+extern SSIRegisterBasePtr pSsi2;
 
 extern SystemControlRegisterBasePtr pSystemControl;
 
