@@ -1640,7 +1640,7 @@ extern UARTRegisterBasePtr pUart7;
 extern SSIRegisterBasePtr pSsi0;
 extern SSIRegisterBasePtr pSsi1;
 extern SSIRegisterBasePtr pSsi2;
-extern SSIRegisterBasePtr pSsi2;
+extern SSIRegisterBasePtr pSsi3;
 
 extern SystemControlRegisterBasePtr pSystemControl;
 
