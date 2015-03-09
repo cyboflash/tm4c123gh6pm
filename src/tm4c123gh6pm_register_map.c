@@ -26,6 +26,19 @@ GPIORegisterBasePtr pPortD = (GPIORegisterBasePtr)GPIO_APB_PORTD_REGISTER_BASE_A
 GPIORegisterBasePtr pPortE = (GPIORegisterBasePtr)GPIO_APB_PORTE_REGISTER_BASE_ADDR;
 GPIORegisterBasePtr pPortF = (GPIORegisterBasePtr)GPIO_APB_PORTF_REGISTER_BASE_ADDR;
 
+GPTMRegisterBasePtr p1632Timer0 = (GPTMRegisterBasePtr)GPTM_16_32_TIMER0;
+GPTMRegisterBasePtr p1632Timer1 = (GPTMRegisterBasePtr)GPTM_16_32_TIMER1;
+GPTMRegisterBasePtr p1632Timer2 = (GPTMRegisterBasePtr)GPTM_16_32_TIMER2;
+GPTMRegisterBasePtr p1632Timer3 = (GPTMRegisterBasePtr)GPTM_16_32_TIMER3;
+GPTMRegisterBasePtr p1632Timer4 = (GPTMRegisterBasePtr)GPTM_16_32_TIMER4;
+GPTMRegisterBasePtr p1632Timer5 = (GPTMRegisterBasePtr)GPTM_16_32_TIMER5;
+GPTMRegisterBasePtr p3264Timer0 = (GPTMRegisterBasePtr)GPTM_32_64_TIMER0;
+GPTMRegisterBasePtr p3264Timer1 = (GPTMRegisterBasePtr)GPTM_32_64_TIMER1;
+GPTMRegisterBasePtr p3264Timer2 = (GPTMRegisterBasePtr)GPTM_32_64_TIMER2;
+GPTMRegisterBasePtr p3264Timer3 = (GPTMRegisterBasePtr)GPTM_32_64_TIMER3;
+GPTMRegisterBasePtr p3264Timer4 = (GPTMRegisterBasePtr)GPTM_32_64_TIMER4;
+GPTMRegisterBasePtr p3264Timer5 = (GPTMRegisterBasePtr)GPTM_32_64_TIMER5;
+
 UARTRegisterBasePtr pUart0 = (UARTRegisterBasePtr)UART0_REGISTER_BASE_ADDR;
 UARTRegisterBasePtr pUart1 = (UARTRegisterBasePtr)UART1_REGISTER_BASE_ADDR;
 UARTRegisterBasePtr pUart2 = (UARTRegisterBasePtr)UART2_REGISTER_BASE_ADDR;

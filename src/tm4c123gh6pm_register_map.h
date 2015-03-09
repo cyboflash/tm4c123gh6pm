@@ -164,8 +164,7 @@ typedef union GPIODENRegister_t {
 typedef union GPIOLOCKRegister_t {
   uint32_t value;
   struct {
-    uint32_t LOCK0 : 16,
-             LOCK1 : 16;
+    uint32_t LOCK : 32;
   } field;
 } GPIOLOCKRegister;
 
@@ -282,6 +281,237 @@ typedef struct GPIORegisterBase_t {
 
 /* Define a const pointer to a volatile GPIORegisterBase */
 typedef GPIORegisterBase volatile * const GPIORegisterBasePtr;
+
+/* GPTM */
+typedef union GPTMMCFGRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t GPTMCFG  : 3,
+             reserved : 29;
+  } field;
+} GPTMCFGRegister;
+
+typedef union GPTMTMRRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t TMR      : 2,
+             TCMR     : 1,
+             TAMS     : 1,
+             TCDIR    : 1,
+             TMIE     : 1,
+             TWOT     : 1,
+             TSNAPS   : 1,
+             TILD     : 1,
+             TPWMIE   : 1,
+             TMRSU    : 1,
+             TPLO     : 1,
+             reserved : 20;
+  } field;
+} GPTMTMRRegister;
+
+typedef GPTMTMRRegister GPTMTAMRRegister;
+typedef GPTMTMRRegister GPTMTBMRRegister;
+
+typedef union GPTMCTLRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t TAEN      : 1,
+             TASTALL   : 1,
+             TAEVENT   : 2,
+             RTCEN     : 1,
+             TAOTE     : 1,
+             TAPWML    : 1,
+             reserved0 : 1,
+             TBEN      : 1,
+             TBSTALL   : 1,
+             TBEVENT   : 2,
+             reserved1 : 1,
+             TBOTE     : 1,
+             TBPWML    : 1,
+             reserved2 : 17;
+  } field;
+} GPTMCTLRegister;
+
+typedef union GPTMSYNCRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t SYNCT0   : 2,
+             SYNCT1   : 2,
+             SYNCT2   : 2,
+             SYNCT3   : 2,
+             SYNCT4   : 2,
+             SYNCT5   : 2,
+             SYNCWT0  : 2,
+             SYNCWT1  : 2,
+             SYNCWT2  : 2,
+             SYNCWT3  : 2,
+             SYNCWT4  : 2,
+             SYNCWT5  : 2,
+             reserved : 8;
+  } field;
+} GPTMSYNCRegister;
+
+typedef union GPTMInterruptRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t TATO : 1,
+             CAM : 1,
+             CAE : 1,
+             RTC : 1,
+             TAM : 1,
+             reserved0 : 3,
+             TBTO : 1,
+             CBM : 1,
+             CBE : 1,
+             TBM : 1,
+             reserved1 : 4,
+             WUE : 1,
+             reserved2 : 15;
+  } field;
+} GPTMInterruptRegister;
+
+typedef GPTMInterruptRegister GPTMIMRRegister;
+typedef GPTMInterruptRegister GPTMRISRegister;
+typedef GPTMInterruptRegister GPTMMISRegister;
+typedef GPTMInterruptRegister GPTMICRRegister;
+
+typedef union GPTMTILRRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t TILR : 32;
+  } field;
+} GPTMTILRRegister;
+
+typedef GPTMTILRRegister GPTMTAILRRegister;
+typedef GPTMTILRRegister GPTMTBILRRegister;
+
+typedef union GPTMTMATCHRRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t TMR : 32;
+  } field;
+} GPTMTMATCHRRegister;
+
+typedef GPTMTMATCHRRegister GPTMTAMATCHRRegister;
+typedef GPTMTMATCHRRegister GPTMTBMATCHRRegister;
+
+typedef union GPTMTPRRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t TPSR     : 8,
+             TPSRH    : 8,
+             reserved : 16;
+  } field;
+} GPTMTPRRegister;
+
+typedef GPTMTPRRegister GPTMTAPRRegister;
+typedef GPTMTPRRegister GPTMTBPRRegister;
+
+typedef union GPTMTPMRRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t TPSMR    : 8,
+             TPSMRH   : 8,
+             reserved : 16;
+  } field;
+} GPTMTPMRRegister;
+
+typedef GPTMTPMRRegister GPTMTAPMRRegister;
+typedef GPTMTPMRRegister GPTMTBPMRRegister;
+
+typedef union GPTMTRRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t TR : 32;
+  } field;
+} GPTMTRRegister;
+
+typedef GPTMTRRegister GPTMTARRegister;
+typedef GPTMTRRegister GPTMTBRRegister;
+
+typedef union GPTMTVRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t TV : 32;
+  } field;
+} GPTMTVRegister;
+
+typedef GPTMTVRegister GPTMTAVRegister;
+typedef GPTMTVRegister GPTMTBVRegister;
+
+typedef union GPTMRTCPDRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t RTCPD    : 16,
+             reserved : 16;
+  } field;
+} GPTMRTCPDRegister;
+
+typedef union GPTMTPSRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t PSS      : 16,
+             reserved : 16;
+  } field;
+} GPTMTPSRegister;
+
+typedef GPTMTPSRegister GPTMTAPSRegister;
+typedef GPTMTPSRegister GPTMTBPSRegister;
+
+typedef union GPTMTPVRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t PSV      : 16,
+             reserved : 16;
+  } field;
+} GPTMTPVRegister;
+
+typedef GPTMTPVRegister GPTMTAPVRegister;
+typedef GPTMTPVRegister GPTMTBPVRegister;
+
+typedef union GPTMPPRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t SIZE     : 4,
+             reserved : 28;
+  } field;
+} GPTMPPRegister;
+
+typedef struct GPTMRegisterBase_t {
+                                         // Offset
+  GPTMCFGRegister      GPTMCFG;          // 0x000
+  GPTMTAMRRegister     GPTMTAMR;         // 0x004
+  GPTMTBMRRegister     GPTMTBMR;         // 0x008
+  GPTMCTLRegister      GPTMCTL;          // 0x00C
+  GPTMSYNCRegister     GPTMSYNC;         // 0x010
+  uint8_t              reserved0[0x04];  // 0x014
+  GPTMIMRRegister      GPTMIMR;          // 0x018
+  GPTMRISRegister      GPTMRIS;          // 0x01C
+  GPTMMISRegister      GPTMMIS;          // 0x020
+  GPTMICRRegister      GPTMICR;          // 0x024
+  GPTMTILRRegister     GPTMTAILR;        // 0x028
+  GPTMTILRRegister     GPTMTBILR;        // 0x02C
+  GPTMTAMATCHRRegister GPTMTAMATCHR;     // 0x030
+  GPTMTBMATCHRRegister GPTMTBMATCHR;     // 0x034
+  GPTMTAPRRegister     GPTMTAPR;         // 0x038
+  GPTMTBPRRegister     GPTMTBPR;         // 0x03C
+  GPTMTAPMRRegister    GPTMTAPMR;        // 0x040
+  GPTMTBPMRRegister    GPTMTBPMR;        // 0x044
+  GPTMTARRegister      GPTMTAR;          // 0x048
+  GPTMTBRRegister      GPTMTBR;          // 0x04C
+  GPTMTAVRegister      GPTMTAV;          // 0x050
+  GPTMTBVRegister      GPTMTBV;          // 0x054
+  GPTMRTCPDRegister    GPTMRTCPD;        // 0x058
+  GPTMTAPSRegister     GPTMTAPS;         // 0x05C
+  GPTMTBPSRegister     GPTMTBPS;         // 0x060
+  GPTMTAPVRegister     GPTMTAPV;         // 0x064
+  GPTMTBPVRegister     GPTMTBPV;         // 0x068
+  uint8_t              reserved1[0xF54]; // 0x06C
+  GPTMPPRegister       GPTMPP;           // 0xFC0
+} GPTMRegisterBase;
+
+/* Define a const pointer to a volatile GPTMRegisterBase */
+typedef GPTMRegisterBase volatile * const GPTMRegisterBasePtr;
 
 /* System Control */
 typedef union RISRegister_t {
@@ -1597,6 +1827,19 @@ typedef SSIRegisterBase volatile * const SSIRegisterBasePtr;
 #define GPIO_APB_PORTE_REGISTER_BASE_ADDR ((unsigned long)0x40024000)
 #define GPIO_APB_PORTF_REGISTER_BASE_ADDR ((unsigned long)0x40025000)
 
+#define GPTM_16_32_TIMER0 ((unsigned long)0x40030000)
+#define GPTM_16_32_TIMER1 ((unsigned long)0x40031000)
+#define GPTM_16_32_TIMER2 ((unsigned long)0x40032000)
+#define GPTM_16_32_TIMER3 ((unsigned long)0x40033000)
+#define GPTM_16_32_TIMER4 ((unsigned long)0x40034000)
+#define GPTM_16_32_TIMER5 ((unsigned long)0x40035000)
+#define GPTM_32_64_TIMER0 ((unsigned long)0x40036000)
+#define GPTM_32_64_TIMER1 ((unsigned long)0x40037000)
+#define GPTM_32_64_TIMER2 ((unsigned long)0x4003C000)
+#define GPTM_32_64_TIMER3 ((unsigned long)0x4003D000)
+#define GPTM_32_64_TIMER4 ((unsigned long)0x4003E000)
+#define GPTM_32_64_TIMER5 ((unsigned long)0x4003F000)
+
 #define ADC0_REGISTER_BASE_ADDR ((unsigned long)0x40038000)
 #define ADC1_REGISTER_BASE_ADDR ((unsigned long)0x40039000)
 
@@ -1624,6 +1867,19 @@ extern GPIORegisterBasePtr pPortC;
 extern GPIORegisterBasePtr pPortD;
 extern GPIORegisterBasePtr pPortE;
 extern GPIORegisterBasePtr pPortF;
+
+extern GPTMRegisterBasePtr p1632Timer0;
+extern GPTMRegisterBasePtr p1632Timer1;
+extern GPTMRegisterBasePtr p1632Timer2;
+extern GPTMRegisterBasePtr p1632Timer3;
+extern GPTMRegisterBasePtr p1632Timer4;
+extern GPTMRegisterBasePtr p1632Timer5;
+extern GPTMRegisterBasePtr p3264Timer0;
+extern GPTMRegisterBasePtr p3264Timer1;
+extern GPTMRegisterBasePtr p3264Timer2;
+extern GPTMRegisterBasePtr p3264Timer3;
+extern GPTMRegisterBasePtr p3264Timer4;
+extern GPTMRegisterBasePtr p3264Timer5;
 
 extern ADCRegisterBasePtr pAdc0;
 extern ADCRegisterBasePtr pAdc1;
