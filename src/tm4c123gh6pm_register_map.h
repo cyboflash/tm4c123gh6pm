@@ -553,6 +553,58 @@ typedef union RCCRegister_t {
   } field;
 } RCCRegister;
 
+typedef union RCGC0Register_t {
+  uint32_t value;
+  struct {
+    uint32_t reserved0  : 3,
+             WDT0       : 1,
+             reserved1  : 2,
+             HIB        : 1,
+             reserved2  : 1,
+             MAXADC0SPD : 2,
+             MAXADC1SPD : 2,
+             reserved3  : 4,
+             ADC0       : 1,
+             ADC1       : 1,
+             reserved4  : 2,
+             PWM0       : 1,
+             reserved5  : 3,
+             CAN0       : 1,
+             CAN1       : 1,
+             reserved6  : 2,
+             WDT1       : 1,
+             reserved7  : 3;
+  } field;
+} RCGC0Register;
+
+typedef union RCGC1Register_t {
+  uint32_t value;
+  struct {
+    uint32_t UART0     : 1,
+             UART1     : 1,
+             UART2     : 1,
+             reserved0 : 1,
+             SSI0      : 1,
+             SSI1      : 1,
+             reserved1 : 2,
+             QEI0      : 1,
+             QEI1      : 1,
+             reserved2 : 2,
+             I2C0      : 1,
+             reserved3 : 1,
+             I2C1      : 1,
+             reserved4 : 1,
+             TIMER0    : 1,
+             TIMER1    : 1,
+             TIMER2    : 1,
+             TIMER3    : 1,
+             reserved5 : 4,
+             COMP0     : 1,
+             COMP1     : 1,
+             reserved6 : 6;
+  } field;
+} RCGC1Register;
+
 typedef union RCC2Register_t {
   uint32_t value;
   struct {
@@ -590,14 +642,16 @@ typedef union RCGC2Register_t {
 } RCGC2Register;
 
 typedef struct SystemControlRegisterBase_t {
-  uint8_t       reserved0[0x050];
-  RISRegister   RIS;
-  uint8_t       reserved1[0x00C];
-  RCCRegister   RCC;
-  uint8_t       reserved2[0x00C];
-  RCC2Register  RCC2;
-  uint8_t       reserved3[0x094];
-  RCGC2Register RCGC2;
+  uint8_t       reserved0[0x050]; // 0x000
+  RISRegister   RIS;              // 0x050
+  uint8_t       reserved1[0x00C]; // 0x054
+  RCCRegister   RCC;              // 0x060
+  uint8_t       reserved2[0x00C]; // 0x064
+  RCC2Register  RCC2;             // 0x070
+  uint8_t       reserved3[0x08C]; // 0x074
+  RCGC0Register RCGC0;            // 0x100
+  RCGC1Register RCGC1;            // 0x104
+  RCGC2Register RCGC2;            // 0x108
 } SystemControlRegisterBase;
 
 /* Define a const pointer to a volatile SystemControlRegister */
