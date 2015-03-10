@@ -897,7 +897,7 @@ typedef union ADCACTSSRegiseter_t {
   } field;
 } ADCACTSSRegiseter;
 
-typedef union ADCIRSRegister_t {
+typedef union ADCRISRegister_t {
   uint32_t value;
   struct {
     uint32_t INR0      : 1,
@@ -908,7 +908,7 @@ typedef union ADCIRSRegister_t {
              INRDC     : 1,
              reserved1 : 15;
   } field;
-} ADCIRSRegister;
+} ADCRISRegister;
 
 typedef union ADCIMRegister_t {
   uint32_t value;
@@ -1399,7 +1399,7 @@ typedef union ADCCCRegister_t {
 typedef struct ADCRegisterBase_t {
                                         // Offset
   ADCACTSSRegiseter   ADCACTSS;         // 0x000
-  ADCIRSRegister      ADCIRS;           // 0x004
+  ADCRISRegister      ADCRIS;           // 0x004
   ADCIMRegister       ADCIM;            // 0x008
   ADCISCRegister      ADCISC;           // 0x00C
   ADCOSTATRegister    ADCOSTAT;         // 0x010
@@ -1866,50 +1866,50 @@ typedef struct SSIRegisterBase_t {
 typedef SSIRegisterBase volatile * const SSIRegisterBasePtr;
 
 /* Base Addresses and Offsets */
-#define SYSTEM_TICK_REGISTER_OFFSET        ((unsigned long)0x00000010)
-#define NVIC_REGISTER_OFFSET               ((unsigned long)0x00000100)
-#define PERIPHERALS_REGISTER_BASE_ADDR     ((unsigned long)0xE000E000)
+#define SYSTEM_TICK_REGISTER_OFFSET        ((uint32_t)0x00000010)
+#define NVIC_REGISTER_OFFSET               ((uint32_t)0x00000100)
+#define PERIPHERALS_REGISTER_BASE_ADDR     ((uint32_t)0xE000E000)
 #define SYSTEM_TICK_REGISTER_BASE_ADDR     (PERIPHERALS_REGISTER_BASE_ADDR)
 #define NVIC_REGISTER_BASE_ADDR            (PERIPHERALS_REGISTER_BASE_ADDR)
 
-#define SYSTEM_CONTROL_REGISTER_BASE_ADDR ((unsigned long)0x400FE000)
+#define SYSTEM_CONTROL_REGISTER_BASE_ADDR ((uint32_t)0x400FE000)
 
-#define GPIO_APB_PORTA_REGISTER_BASE_ADDR ((unsigned long)0x40004000)
-#define GPIO_APB_PORTB_REGISTER_BASE_ADDR ((unsigned long)0x40005000)
-#define GPIO_APB_PORTC_REGISTER_BASE_ADDR ((unsigned long)0x40006000)
-#define GPIO_APB_PORTD_REGISTER_BASE_ADDR ((unsigned long)0x40007000)
-#define GPIO_APB_PORTE_REGISTER_BASE_ADDR ((unsigned long)0x40024000)
-#define GPIO_APB_PORTF_REGISTER_BASE_ADDR ((unsigned long)0x40025000)
+#define GPIO_APB_PORTA_REGISTER_BASE_ADDR ((uint32_t)0x40004000)
+#define GPIO_APB_PORTB_REGISTER_BASE_ADDR ((uint32_t)0x40005000)
+#define GPIO_APB_PORTC_REGISTER_BASE_ADDR ((uint32_t)0x40006000)
+#define GPIO_APB_PORTD_REGISTER_BASE_ADDR ((uint32_t)0x40007000)
+#define GPIO_APB_PORTE_REGISTER_BASE_ADDR ((uint32_t)0x40024000)
+#define GPIO_APB_PORTF_REGISTER_BASE_ADDR ((uint32_t)0x40025000)
 
-#define GPTM_16_32_TIMER0 ((unsigned long)0x40030000)
-#define GPTM_16_32_TIMER1 ((unsigned long)0x40031000)
-#define GPTM_16_32_TIMER2 ((unsigned long)0x40032000)
-#define GPTM_16_32_TIMER3 ((unsigned long)0x40033000)
-#define GPTM_16_32_TIMER4 ((unsigned long)0x40034000)
-#define GPTM_16_32_TIMER5 ((unsigned long)0x40035000)
-#define GPTM_32_64_TIMER0 ((unsigned long)0x40036000)
-#define GPTM_32_64_TIMER1 ((unsigned long)0x40037000)
-#define GPTM_32_64_TIMER2 ((unsigned long)0x4003C000)
-#define GPTM_32_64_TIMER3 ((unsigned long)0x4003D000)
-#define GPTM_32_64_TIMER4 ((unsigned long)0x4003E000)
-#define GPTM_32_64_TIMER5 ((unsigned long)0x4003F000)
+#define GPTM_16_32_TIMER0 ((uint32_t)0x40030000)
+#define GPTM_16_32_TIMER1 ((uint32_t)0x40031000)
+#define GPTM_16_32_TIMER2 ((uint32_t)0x40032000)
+#define GPTM_16_32_TIMER3 ((uint32_t)0x40033000)
+#define GPTM_16_32_TIMER4 ((uint32_t)0x40034000)
+#define GPTM_16_32_TIMER5 ((uint32_t)0x40035000)
+#define GPTM_32_64_TIMER0 ((uint32_t)0x40036000)
+#define GPTM_32_64_TIMER1 ((uint32_t)0x40037000)
+#define GPTM_32_64_TIMER2 ((uint32_t)0x4003C000)
+#define GPTM_32_64_TIMER3 ((uint32_t)0x4003D000)
+#define GPTM_32_64_TIMER4 ((uint32_t)0x4003E000)
+#define GPTM_32_64_TIMER5 ((uint32_t)0x4003F000)
 
-#define ADC0_REGISTER_BASE_ADDR ((unsigned long)0x40038000)
-#define ADC1_REGISTER_BASE_ADDR ((unsigned long)0x40039000)
+#define ADC0_REGISTER_BASE_ADDR ((uint32_t)0x40038000)
+#define ADC1_REGISTER_BASE_ADDR ((uint32_t)0x40039000)
 
-#define UART0_REGISTER_BASE_ADDR ((unsigned long)0x4000C000)
-#define UART1_REGISTER_BASE_ADDR ((unsigned long)0x4000D000)
-#define UART2_REGISTER_BASE_ADDR ((unsigned long)0x4000E000)
-#define UART3_REGISTER_BASE_ADDR ((unsigned long)0x4000F000)
-#define UART4_REGISTER_BASE_ADDR ((unsigned long)0x40010000)
-#define UART5_REGISTER_BASE_ADDR ((unsigned long)0x40011000)
-#define UART6_REGISTER_BASE_ADDR ((unsigned long)0x40012000)
-#define UART7_REGISTER_BASE_ADDR ((unsigned long)0x40013000)
+#define UART0_REGISTER_BASE_ADDR ((uint32_t)0x4000C000)
+#define UART1_REGISTER_BASE_ADDR ((uint32_t)0x4000D000)
+#define UART2_REGISTER_BASE_ADDR ((uint32_t)0x4000E000)
+#define UART3_REGISTER_BASE_ADDR ((uint32_t)0x4000F000)
+#define UART4_REGISTER_BASE_ADDR ((uint32_t)0x40010000)
+#define UART5_REGISTER_BASE_ADDR ((uint32_t)0x40011000)
+#define UART6_REGISTER_BASE_ADDR ((uint32_t)0x40012000)
+#define UART7_REGISTER_BASE_ADDR ((uint32_t)0x40013000)
 
-#define SSI0_REGISTER_BASE_ADDR ((unsigned long)0x40008000)
-#define SSI1_REGISTER_BASE_ADDR ((unsigned long)0x40009000)
-#define SSI2_REGISTER_BASE_ADDR ((unsigned long)0x4000A000)
-#define SSI3_REGISTER_BASE_ADDR ((unsigned long)0x4000B000)
+#define SSI0_REGISTER_BASE_ADDR ((uint32_t)0x40008000)
+#define SSI1_REGISTER_BASE_ADDR ((uint32_t)0x40009000)
+#define SSI2_REGISTER_BASE_ADDR ((uint32_t)0x4000A000)
+#define SSI3_REGISTER_BASE_ADDR ((uint32_t)0x4000B000)
 
 extern PeripheralsRegisterBasePtr pPeripherals;
 #define pSystemTick (&pPeripherals->systemTick)
