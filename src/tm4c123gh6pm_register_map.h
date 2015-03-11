@@ -1056,7 +1056,7 @@ typedef union ADCCTLRegister_t {
     uint32_t VREF      : 2,
              reserved0 : 4,
              DITHER    : 1,
-             reserved1 : 29;
+             reserved1 : 25;
   } field;
 } ADCCTLRegister;
 
