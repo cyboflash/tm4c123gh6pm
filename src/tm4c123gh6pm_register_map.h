@@ -237,7 +237,7 @@ typedef GPIOPCellIDRegister GPIOPCellID5Register;
 typedef GPIOPCellIDRegister GPIOPCellID6Register;
 typedef GPIOPCellIDRegister GPIOPCellID7Register;
 
-typedef struct GPIORegisterBase_t {
+typedef struct GPIORegisterMap_t {
                                           // Offset
   uint8_t               GPIODATA[0x400];  // 0x000
   GPIODIRRegister       GPIODIR;          // 0x400
@@ -277,10 +277,10 @@ typedef struct GPIORegisterBase_t {
   GPIOPCellID1Register  GPIOPCellID1;     // 0xFF4
   GPIOPCellID2Register  GPIOPCellID2;     // 0xFF8
   GPIOPCellID3Register  GPIOPCellID3;     // 0xFFC
-} GPIORegisterBase;
+} GPIORegisterMap;
 
-/* Define a const pointer to a volatile GPIORegisterBase */
-typedef GPIORegisterBase volatile * const GPIORegisterBasePtr;
+/* Define a const pointer to a volatile GPIORegisterMap */
+typedef GPIORegisterMap volatile * const GPIORegisterMapPtr;
 
 /* GPTM */
 typedef union GPTMMCFGRegister_t {
@@ -477,7 +477,7 @@ typedef union GPTMPPRegister_t {
   } field;
 } GPTMPPRegister;
 
-typedef struct GPTMRegisterBase_t {
+typedef struct GPTMRegisterMap_t {
                                          // Offset
   GPTMCFGRegister      GPTMCFG;          // 0x000
   GPTMTAMRRegister     GPTMTAMR;         // 0x004
@@ -508,10 +508,10 @@ typedef struct GPTMRegisterBase_t {
   GPTMTBPVRegister     GPTMTBPV;         // 0x068
   uint8_t              reserved1[0xF54]; // 0x06C
   GPTMPPRegister       GPTMPP;           // 0xFC0
-} GPTMRegisterBase;
+} GPTMRegisterMap;
 
-/* Define a const pointer to a volatile GPTMRegisterBase */
-typedef GPTMRegisterBase volatile * const GPTMRegisterBasePtr;
+/* Define a const pointer to a volatile GPTMRegisterMap */
+typedef GPTMRegisterMap volatile * const GPTMRegisterMapPtr;
 
 /* System Control */
 typedef union RISRegister_t {
@@ -641,7 +641,7 @@ typedef union RCGC2Register_t {
   } field;
 } RCGC2Register;
 
-typedef struct SystemControlRegisterBase_t {
+typedef struct SystemControlRegisterMap_t {
   uint8_t       reserved0[0x050]; // 0x000
   RISRegister   RIS;              // 0x050
   uint8_t       reserved1[0x00C]; // 0x054
@@ -652,10 +652,10 @@ typedef struct SystemControlRegisterBase_t {
   RCGC0Register RCGC0;            // 0x100
   RCGC1Register RCGC1;            // 0x104
   RCGC2Register RCGC2;            // 0x108
-} SystemControlRegisterBase;
+} SystemControlRegisterMap;
 
 /* Define a const pointer to a volatile SystemControlRegister */
-typedef SystemControlRegisterBase volatile * const SystemControlRegisterBasePtr;
+typedef SystemControlRegisterMap volatile * const SystemControlRegisterMapPtr;
 
 /* System Tick */
 typedef union STCTRLRegister_t {
@@ -686,16 +686,16 @@ typedef union STCURRENTRegister_t {
   } field;
 } STCURRENTRegister;
 
-typedef struct SystemTickRegisterBase_t {
+typedef struct SystemTickRegisterMap_t {
                                      // Offset
   uint8_t           reserved[0x010]; // 0x000
   STCTRLRegister    STCTRL;          // 0x010
   STRELOADRegister  STRELOAD;        // 0x014
   STCURRENTRegister STCURRENT;       // 0x018
-} SystemTickRegisterBase;
+} SystemTickRegisterMap;
 
-/* Define a const pointer to a volatile SystemTickRegisterBase */
-typedef SystemTickRegisterBase volatile * const SystemTickRegisterBasePtr;
+/* Define a const pointer to a volatile SystemTickRegisterMap */
+typedef SystemTickRegisterMap volatile * const SystemTickRegisterMapPtr;
 
 /* NVIC */
 typedef union NVICRegister_t {
@@ -799,7 +799,7 @@ typedef union SWTRIGRegister_t {
   } field;
 } SWTRIGRegister;
 
-typedef struct NVICRegisterBase_t {
+typedef struct NVICRegisterMap_t {
                                     // Offset
   uint8_t        reserved0[0x100];  // 0x000
   EN0Register     EN0;              // 0x100
@@ -869,19 +869,19 @@ typedef struct NVICRegisterBase_t {
   PRI4Register    PRI34;            // 0x488
   uint8_t         reserved6[0xA74]; // 0x48C
   SWTRIGRegister SWTRIG;            // 0xF00
-} NVICRegisterBase;
+} NVICRegisterMap;
 
-/* Define a const pointer to a volatile NVICRegisterBase */
-typedef NVICRegisterBase volatile * const NVICRegisterBasePtr;
+/* Define a const pointer to a volatile NVICRegisterMap */
+typedef NVICRegisterMap volatile * const NVICRegisterMapPtr;
 
 /* Peripherals */
-typedef union PeripheralsRegisterBase_t {
-  SystemTickRegisterBase systemTick;
-  NVICRegisterBase nvic;
-} PeripheralsRegisterBase;
+typedef union PeripheralsRegisterMap_t {
+  SystemTickRegisterMap systemTick;
+  NVICRegisterMap nvic;
+} PeripheralsRegisterMap;
 
-/* Define a const pointer to a volatile PeripheralsRegisterBase */
-typedef PeripheralsRegisterBase volatile * const PeripheralsRegisterBasePtr;
+/* Define a const pointer to a volatile PeripheralsRegisterMap */
+typedef PeripheralsRegisterMap volatile * const PeripheralsRegisterMapPtr;
 
 /* ADC */
 typedef union ADCACTSSRegiseter_t {
@@ -1396,7 +1396,7 @@ typedef union ADCCCRegister_t {
   } field;
 } ADCCRegister;
 
-typedef struct ADCRegisterBase_t {
+typedef struct ADCRegisterMap_t {
                                         // Offset
   ADCACTSSRegiseter   ADCACTSS;         // 0x000
   ADCRISRegister      ADCRIS;           // 0x004
@@ -1465,10 +1465,10 @@ typedef struct ADCRegisterBase_t {
   ADCPPRegister       ADCPP;            // 0xFC0
   ADCPCRegister       ADCPC;            // 0xFC4
   ADCCRegister        ADCC;             // 0xFC8
-} ADCRegisterBase;
+} ADCRegisterMap;
 
-/* Define a const pointer to a volatile ADCRegisterBase */
-typedef ADCRegisterBase volatile * const ADCRegisterBasePtr;
+/* Define a const pointer to a volatile ADCRegisterMap */
+typedef ADCRegisterMap volatile * const ADCRegisterMapPtr;
 
 /* UART */
 typedef union UARTDRRegister_t {
@@ -1678,7 +1678,7 @@ typedef UARTPCellIDRegister UARTPCellID1Register;
 typedef UARTPCellIDRegister UARTPCellID2Register;
 typedef UARTPCellIDRegister UARTPCellID3Register;
 
-typedef struct UARTRegisterBase_t {
+typedef struct UARTRegisterMap_t {
                                           // Offset
   UARTDRRegister        UARTDR;           // 0x000
   UARTRSRECRRegister    UARTRSRECR;       // 0x004
@@ -1716,10 +1716,10 @@ typedef struct UARTRegisterBase_t {
   UARTPCellID1Register  UARTPCellID1;     // 0xFF4
   UARTPCellID2Register  UARTPCellID2;     // 0xFF8
   UARTPCellID3Register  UARTPCellID3;     // 0xFFC
-} UARTRegisterBase;
+} UARTRegisterMap;
 
-/* Define a const pointer to a volatile  UARTRegisterBasePtr */
-typedef UARTRegisterBase volatile * const UARTRegisterBasePtr;
+/* Define a const pointer to a volatile  UARTRegisterMapPtr */
+typedef UARTRegisterMap volatile * const UARTRegisterMapPtr;
 
 /* SSI */
 typedef union SSICR0Register_t {
@@ -1833,7 +1833,7 @@ typedef SSIPCellIDRegister SSIPCellID1Register;
 typedef SSIPCellIDRegister SSIPCellID2Register;
 typedef SSIPCellIDRegister SSIPCellID3Register;
 
-typedef struct SSIRegisterBase_t {
+typedef struct SSIRegisterMap_t {
                                          // Offset
   SSICR0Register       SSICR0;           // 0x000
   SSICR1Register       SSICR1;           // 0x004
@@ -1860,12 +1860,12 @@ typedef struct SSIRegisterBase_t {
   SSIPCellID1Register  SSIPCellID1;      // 0xFF4
   SSIPCellID2Register  SSIPCellID2;      // 0xFF8
   SSIPCellID3Register  SSIPCellID3;      // 0xFFC
-} SSIRegisterBase;
+} SSIRegisterMap;
 
-/* Define a const pointer to a volatile  SSIRegisterBasePtr */
-typedef SSIRegisterBase volatile * const SSIRegisterBasePtr;
+/* Define a const pointer to a volatile  SSIRegisterMapPtr */
+typedef SSIRegisterMap volatile * const SSIRegisterMapPtr;
 
-/* Base Addresses and Offsets */
+/* Map Addresses and Offsets */
 #define SYSTEM_TICK_REGISTER_OFFSET        ((uint32_t)0x00000010)
 #define NVIC_REGISTER_OFFSET               ((uint32_t)0x00000100)
 #define PERIPHERALS_REGISTER_BASE_ADDR     ((uint32_t)0xE000E000)
@@ -1911,47 +1911,47 @@ typedef SSIRegisterBase volatile * const SSIRegisterBasePtr;
 #define SSI2_REGISTER_BASE_ADDR ((uint32_t)0x4000A000)
 #define SSI3_REGISTER_BASE_ADDR ((uint32_t)0x4000B000)
 
-extern PeripheralsRegisterBasePtr pPeripherals;
+extern PeripheralsRegisterMapPtr pPeripherals;
 #define pSystemTick (&pPeripherals->systemTick)
 #define pNvic       (&pPeripherals->nvic)
 
-extern GPIORegisterBasePtr pPortA;
-extern GPIORegisterBasePtr pPortB;
-extern GPIORegisterBasePtr pPortC;
-extern GPIORegisterBasePtr pPortD;
-extern GPIORegisterBasePtr pPortE;
-extern GPIORegisterBasePtr pPortF;
+extern GPIORegisterMapPtr pPortA;
+extern GPIORegisterMapPtr pPortB;
+extern GPIORegisterMapPtr pPortC;
+extern GPIORegisterMapPtr pPortD;
+extern GPIORegisterMapPtr pPortE;
+extern GPIORegisterMapPtr pPortF;
 
-extern GPTMRegisterBasePtr p1632Timer0;
-extern GPTMRegisterBasePtr p1632Timer1;
-extern GPTMRegisterBasePtr p1632Timer2;
-extern GPTMRegisterBasePtr p1632Timer3;
-extern GPTMRegisterBasePtr p1632Timer4;
-extern GPTMRegisterBasePtr p1632Timer5;
-extern GPTMRegisterBasePtr p3264Timer0;
-extern GPTMRegisterBasePtr p3264Timer1;
-extern GPTMRegisterBasePtr p3264Timer2;
-extern GPTMRegisterBasePtr p3264Timer3;
-extern GPTMRegisterBasePtr p3264Timer4;
-extern GPTMRegisterBasePtr p3264Timer5;
+extern GPTMRegisterMapPtr p1632Timer0;
+extern GPTMRegisterMapPtr p1632Timer1;
+extern GPTMRegisterMapPtr p1632Timer2;
+extern GPTMRegisterMapPtr p1632Timer3;
+extern GPTMRegisterMapPtr p1632Timer4;
+extern GPTMRegisterMapPtr p1632Timer5;
+extern GPTMRegisterMapPtr p3264Timer0;
+extern GPTMRegisterMapPtr p3264Timer1;
+extern GPTMRegisterMapPtr p3264Timer2;
+extern GPTMRegisterMapPtr p3264Timer3;
+extern GPTMRegisterMapPtr p3264Timer4;
+extern GPTMRegisterMapPtr p3264Timer5;
 
-extern ADCRegisterBasePtr pAdc0;
-extern ADCRegisterBasePtr pAdc1;
+extern ADCRegisterMapPtr pAdc0;
+extern ADCRegisterMapPtr pAdc1;
 
-extern UARTRegisterBasePtr pUart0;
-extern UARTRegisterBasePtr pUart1;
-extern UARTRegisterBasePtr pUart2;
-extern UARTRegisterBasePtr pUart3;
-extern UARTRegisterBasePtr pUart4;
-extern UARTRegisterBasePtr pUart5;
-extern UARTRegisterBasePtr pUart6;
-extern UARTRegisterBasePtr pUart7;
+extern UARTRegisterMapPtr pUart0;
+extern UARTRegisterMapPtr pUart1;
+extern UARTRegisterMapPtr pUart2;
+extern UARTRegisterMapPtr pUart3;
+extern UARTRegisterMapPtr pUart4;
+extern UARTRegisterMapPtr pUart5;
+extern UARTRegisterMapPtr pUart6;
+extern UARTRegisterMapPtr pUart7;
 
-extern SSIRegisterBasePtr pSsi0;
-extern SSIRegisterBasePtr pSsi1;
-extern SSIRegisterBasePtr pSsi2;
-extern SSIRegisterBasePtr pSsi3;
+extern SSIRegisterMapPtr pSsi0;
+extern SSIRegisterMapPtr pSsi1;
+extern SSIRegisterMapPtr pSsi2;
+extern SSIRegisterMapPtr pSsi3;
 
-extern SystemControlRegisterBasePtr pSystemControl;
+extern SystemControlRegisterMapPtr pSystemControl;
 
 #endif // __TM4C123GH6PM_REGISTER_MAP_H__

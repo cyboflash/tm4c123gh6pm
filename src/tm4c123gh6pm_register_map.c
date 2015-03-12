@@ -17,43 +17,43 @@
 #include "tm4c123gh6pm_register_map.h"
 
 /* Mapping */
-PeripheralsRegisterBasePtr pPeripherals = (PeripheralsRegisterBasePtr)PERIPHERALS_REGISTER_BASE_ADDR;
+PeripheralsRegisterMapPtr pPeripherals = (PeripheralsRegisterMapPtr)PERIPHERALS_REGISTER_BASE_ADDR;
 
-GPIORegisterBasePtr pPortA = (GPIORegisterBasePtr)GPIO_APB_PORTA_REGISTER_BASE_ADDR;
-GPIORegisterBasePtr pPortB = (GPIORegisterBasePtr)GPIO_APB_PORTB_REGISTER_BASE_ADDR;
-GPIORegisterBasePtr pPortC = (GPIORegisterBasePtr)GPIO_APB_PORTC_REGISTER_BASE_ADDR;
-GPIORegisterBasePtr pPortD = (GPIORegisterBasePtr)GPIO_APB_PORTD_REGISTER_BASE_ADDR;
-GPIORegisterBasePtr pPortE = (GPIORegisterBasePtr)GPIO_APB_PORTE_REGISTER_BASE_ADDR;
-GPIORegisterBasePtr pPortF = (GPIORegisterBasePtr)GPIO_APB_PORTF_REGISTER_BASE_ADDR;
+GPIORegisterMapPtr pPortA = (GPIORegisterMapPtr)GPIO_APB_PORTA_REGISTER_BASE_ADDR;
+GPIORegisterMapPtr pPortB = (GPIORegisterMapPtr)GPIO_APB_PORTB_REGISTER_BASE_ADDR;
+GPIORegisterMapPtr pPortC = (GPIORegisterMapPtr)GPIO_APB_PORTC_REGISTER_BASE_ADDR;
+GPIORegisterMapPtr pPortD = (GPIORegisterMapPtr)GPIO_APB_PORTD_REGISTER_BASE_ADDR;
+GPIORegisterMapPtr pPortE = (GPIORegisterMapPtr)GPIO_APB_PORTE_REGISTER_BASE_ADDR;
+GPIORegisterMapPtr pPortF = (GPIORegisterMapPtr)GPIO_APB_PORTF_REGISTER_BASE_ADDR;
 
-GPTMRegisterBasePtr p1632Timer0 = (GPTMRegisterBasePtr)GPTM_16_32_TIMER0;
-GPTMRegisterBasePtr p1632Timer1 = (GPTMRegisterBasePtr)GPTM_16_32_TIMER1;
-GPTMRegisterBasePtr p1632Timer2 = (GPTMRegisterBasePtr)GPTM_16_32_TIMER2;
-GPTMRegisterBasePtr p1632Timer3 = (GPTMRegisterBasePtr)GPTM_16_32_TIMER3;
-GPTMRegisterBasePtr p1632Timer4 = (GPTMRegisterBasePtr)GPTM_16_32_TIMER4;
-GPTMRegisterBasePtr p1632Timer5 = (GPTMRegisterBasePtr)GPTM_16_32_TIMER5;
-GPTMRegisterBasePtr p3264Timer0 = (GPTMRegisterBasePtr)GPTM_32_64_TIMER0;
-GPTMRegisterBasePtr p3264Timer1 = (GPTMRegisterBasePtr)GPTM_32_64_TIMER1;
-GPTMRegisterBasePtr p3264Timer2 = (GPTMRegisterBasePtr)GPTM_32_64_TIMER2;
-GPTMRegisterBasePtr p3264Timer3 = (GPTMRegisterBasePtr)GPTM_32_64_TIMER3;
-GPTMRegisterBasePtr p3264Timer4 = (GPTMRegisterBasePtr)GPTM_32_64_TIMER4;
-GPTMRegisterBasePtr p3264Timer5 = (GPTMRegisterBasePtr)GPTM_32_64_TIMER5;
+GPTMRegisterMapPtr p1632Timer0 = (GPTMRegisterMapPtr)GPTM_16_32_TIMER0;
+GPTMRegisterMapPtr p1632Timer1 = (GPTMRegisterMapPtr)GPTM_16_32_TIMER1;
+GPTMRegisterMapPtr p1632Timer2 = (GPTMRegisterMapPtr)GPTM_16_32_TIMER2;
+GPTMRegisterMapPtr p1632Timer3 = (GPTMRegisterMapPtr)GPTM_16_32_TIMER3;
+GPTMRegisterMapPtr p1632Timer4 = (GPTMRegisterMapPtr)GPTM_16_32_TIMER4;
+GPTMRegisterMapPtr p1632Timer5 = (GPTMRegisterMapPtr)GPTM_16_32_TIMER5;
+GPTMRegisterMapPtr p3264Timer0 = (GPTMRegisterMapPtr)GPTM_32_64_TIMER0;
+GPTMRegisterMapPtr p3264Timer1 = (GPTMRegisterMapPtr)GPTM_32_64_TIMER1;
+GPTMRegisterMapPtr p3264Timer2 = (GPTMRegisterMapPtr)GPTM_32_64_TIMER2;
+GPTMRegisterMapPtr p3264Timer3 = (GPTMRegisterMapPtr)GPTM_32_64_TIMER3;
+GPTMRegisterMapPtr p3264Timer4 = (GPTMRegisterMapPtr)GPTM_32_64_TIMER4;
+GPTMRegisterMapPtr p3264Timer5 = (GPTMRegisterMapPtr)GPTM_32_64_TIMER5;
 
-UARTRegisterBasePtr pUart0 = (UARTRegisterBasePtr)UART0_REGISTER_BASE_ADDR;
-UARTRegisterBasePtr pUart1 = (UARTRegisterBasePtr)UART1_REGISTER_BASE_ADDR;
-UARTRegisterBasePtr pUart2 = (UARTRegisterBasePtr)UART2_REGISTER_BASE_ADDR;
-UARTRegisterBasePtr pUart3 = (UARTRegisterBasePtr)UART3_REGISTER_BASE_ADDR;
-UARTRegisterBasePtr pUart4 = (UARTRegisterBasePtr)UART4_REGISTER_BASE_ADDR;
-UARTRegisterBasePtr pUart5 = (UARTRegisterBasePtr)UART5_REGISTER_BASE_ADDR;
-UARTRegisterBasePtr pUart6 = (UARTRegisterBasePtr)UART6_REGISTER_BASE_ADDR;
-UARTRegisterBasePtr pUart7 = (UARTRegisterBasePtr)UART7_REGISTER_BASE_ADDR;
+UARTRegisterMapPtr pUart0 = (UARTRegisterMapPtr)UART0_REGISTER_BASE_ADDR;
+UARTRegisterMapPtr pUart1 = (UARTRegisterMapPtr)UART1_REGISTER_BASE_ADDR;
+UARTRegisterMapPtr pUart2 = (UARTRegisterMapPtr)UART2_REGISTER_BASE_ADDR;
+UARTRegisterMapPtr pUart3 = (UARTRegisterMapPtr)UART3_REGISTER_BASE_ADDR;
+UARTRegisterMapPtr pUart4 = (UARTRegisterMapPtr)UART4_REGISTER_BASE_ADDR;
+UARTRegisterMapPtr pUart5 = (UARTRegisterMapPtr)UART5_REGISTER_BASE_ADDR;
+UARTRegisterMapPtr pUart6 = (UARTRegisterMapPtr)UART6_REGISTER_BASE_ADDR;
+UARTRegisterMapPtr pUart7 = (UARTRegisterMapPtr)UART7_REGISTER_BASE_ADDR;
 
-SSIRegisterBasePtr pSsi0 = (SSIRegisterBasePtr)SSI0_REGISTER_BASE_ADDR;
-SSIRegisterBasePtr pSsi1 = (SSIRegisterBasePtr)SSI1_REGISTER_BASE_ADDR;
-SSIRegisterBasePtr pSsi2 = (SSIRegisterBasePtr)SSI2_REGISTER_BASE_ADDR;
-SSIRegisterBasePtr pSsi3 = (SSIRegisterBasePtr)SSI3_REGISTER_BASE_ADDR;
+SSIRegisterMapPtr pSsi0 = (SSIRegisterMapPtr)SSI0_REGISTER_BASE_ADDR;
+SSIRegisterMapPtr pSsi1 = (SSIRegisterMapPtr)SSI1_REGISTER_BASE_ADDR;
+SSIRegisterMapPtr pSsi2 = (SSIRegisterMapPtr)SSI2_REGISTER_BASE_ADDR;
+SSIRegisterMapPtr pSsi3 = (SSIRegisterMapPtr)SSI3_REGISTER_BASE_ADDR;
 
-ADCRegisterBasePtr pAdc0 = (ADCRegisterBasePtr)ADC0_REGISTER_BASE_ADDR;
-ADCRegisterBasePtr pAdc1 = (ADCRegisterBasePtr)ADC1_REGISTER_BASE_ADDR;
+ADCRegisterMapPtr pAdc0 = (ADCRegisterMapPtr)ADC0_REGISTER_BASE_ADDR;
+ADCRegisterMapPtr pAdc1 = (ADCRegisterMapPtr)ADC1_REGISTER_BASE_ADDR;
 
-SystemControlRegisterBasePtr pSystemControl = (SystemControlRegisterBasePtr)SYSTEM_CONTROL_REGISTER_BASE_ADDR;
+SystemControlRegisterMapPtr pSystemControl = (SystemControlRegisterMapPtr)SYSTEM_CONTROL_REGISTER_BASE_ADDR;
