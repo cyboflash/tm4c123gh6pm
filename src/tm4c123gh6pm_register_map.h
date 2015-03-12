@@ -654,8 +654,38 @@ typedef struct SystemControlRegisterMap_t {
   RCGC2Register RCGC2;            // 0x108
 } SystemControlRegisterMap;
 
-/* Define a const pointer to a volatile SystemControlRegister */
+/* Define a const pointer to a volatile SystemControlRegisterMap */
 typedef SystemControlRegisterMap volatile * const SystemControlRegisterMapPtr;
+
+/* System Exception*/
+typedef union SYSEXCRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t FPIDC    : 1,
+             FPDZC    : 1,
+             FPIOC    : 1,
+             FPUFC    : 1,
+             FPOFC    : 1,
+             FPIXC    : 1,
+             reserved : 26;
+  } field;
+} SYSEXCRegister;
+
+typedef SYSEXCRegister SYSEXCRISRegister;
+typedef SYSEXCRegister SYSEXCIMRegister;
+typedef SYSEXCRegister SYSEXCMISRegister;
+typedef SYSEXCRegister SYSEXCICRegister;
+
+typedef struct SystemExceptionRegisterMap_t {
+                               // Offset
+  SYSEXCRISRegister SYSEXCRIS; // 0x000
+  SYSEXCIMRegister  SYSEXCIM;  // 0x004
+  SYSEXCMISRegister SYSEXCMIS; // 0x008
+  SYSEXCICRegister  SYSEXCIC;  // 0x00C
+} SystemExceptionRegisterMap;
+
+/* Define a const pointer to a volatile SystemExceptionRegisterMap */
+typedef SystemExceptionRegisterMap volatile * const SystemExceptionRegisterMapPtr;
 
 /* System Tick */
 typedef union STCTRLRegister_t {
@@ -1874,6 +1904,8 @@ typedef SSIRegisterMap volatile * const SSIRegisterMapPtr;
 
 #define SYSTEM_CONTROL_REGISTER_BASE_ADDR ((uint32_t)0x400FE000)
 
+#define SYSTEM_EXCEPTION_REGISTER_BASE_ADDR ((uint32_t)0x400F9000)
+
 #define GPIO_APB_PORTA_REGISTER_BASE_ADDR ((uint32_t)0x40004000)
 #define GPIO_APB_PORTB_REGISTER_BASE_ADDR ((uint32_t)0x40005000)
 #define GPIO_APB_PORTC_REGISTER_BASE_ADDR ((uint32_t)0x40006000)
@@ -1953,5 +1985,7 @@ extern SSIRegisterMapPtr pSsi2;
 extern SSIRegisterMapPtr pSsi3;
 
 extern SystemControlRegisterMapPtr pSystemControl;
+
+extern SystemExceptionRegisterMapPtr pSystemException;
 
 #endif // __TM4C123GH6PM_REGISTER_MAP_H__

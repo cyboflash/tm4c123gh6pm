@@ -3,10 +3,12 @@
 // thought it would be nice to have all the registers mapped.
 //
 // License:
-// This software is provided as is. No warranty of any kind. You may use it, modify it, do whatever
+// This software is provided as is. No warranty of any kind. Original authors are not responsible for
+// any kind of damage weather accidental or intentional. You may use it, modify it, do whatever
 // you want with it. It can be used in any projects, open source or commercial. There is only one
-// condition for using it. Please include (or do not remove) the orignal authors comment lines
-// somewhere at the top of the file
+// condition for using it. Please include (or do not remove) the original authors comment lines
+// somewhere at the top of the file. After all we did a large portion of the work for you.
+// Be kind and give us some credit.
 //
 // Original authors: Rail Shafigulin and anonymous student from UT. 6.02X Embedded Systems - Shape
 //                   the world class.
@@ -57,3 +59,5 @@ ADCRegisterMapPtr pAdc0 = (ADCRegisterMapPtr)ADC0_REGISTER_BASE_ADDR;
 ADCRegisterMapPtr pAdc1 = (ADCRegisterMapPtr)ADC1_REGISTER_BASE_ADDR;
 
 SystemControlRegisterMapPtr pSystemControl = (SystemControlRegisterMapPtr)SYSTEM_CONTROL_REGISTER_BASE_ADDR;
+
+SystemExceptionRegisterMapPtr pSystemException = (SystemExceptionRegisterMapPtr)SYSTEM_EXCEPTION_REGISTER_BASE_ADDR;
