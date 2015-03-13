@@ -1913,18 +1913,18 @@ typedef SSIRegisterMap volatile * const SSIRegisterMapPtr;
 #define GPIO_APB_PORTE_REGISTER_BASE_ADDR ((uint32_t)0x40024000)
 #define GPIO_APB_PORTF_REGISTER_BASE_ADDR ((uint32_t)0x40025000)
 
-#define GPTM_16_32_TIMER0 ((uint32_t)0x40030000)
-#define GPTM_16_32_TIMER1 ((uint32_t)0x40031000)
-#define GPTM_16_32_TIMER2 ((uint32_t)0x40032000)
-#define GPTM_16_32_TIMER3 ((uint32_t)0x40033000)
-#define GPTM_16_32_TIMER4 ((uint32_t)0x40034000)
-#define GPTM_16_32_TIMER5 ((uint32_t)0x40035000)
-#define GPTM_32_64_TIMER0 ((uint32_t)0x40036000)
-#define GPTM_32_64_TIMER1 ((uint32_t)0x40037000)
-#define GPTM_32_64_TIMER2 ((uint32_t)0x4003C000)
-#define GPTM_32_64_TIMER3 ((uint32_t)0x4003D000)
-#define GPTM_32_64_TIMER4 ((uint32_t)0x4003E000)
-#define GPTM_32_64_TIMER5 ((uint32_t)0x4003F000)
+#define GPTM_TIMER0  ((uint32_t)0x40030000)
+#define GPTM_TIMER1  ((uint32_t)0x40031000)
+#define GPTM_TIMER2  ((uint32_t)0x40032000)
+#define GPTM_TIMER3  ((uint32_t)0x40033000)
+#define GPTM_TIMER4  ((uint32_t)0x40034000)
+#define GPTM_TIMER5  ((uint32_t)0x40035000)
+#define GPTM_WTIMER0 ((uint32_t)0x40036000)
+#define GPTM_WTIMER1 ((uint32_t)0x40037000)
+#define GPTM_WTIMER2 ((uint32_t)0x4003C000)
+#define GPTM_WTIMER3 ((uint32_t)0x4003D000)
+#define GPTM_WTIMER4 ((uint32_t)0x4003E000)
+#define GPTM_WTIMER5 ((uint32_t)0x4003F000)
 
 #define ADC0_REGISTER_BASE_ADDR ((uint32_t)0x40038000)
 #define ADC1_REGISTER_BASE_ADDR ((uint32_t)0x40039000)
@@ -1954,18 +1954,18 @@ extern GPIORegisterMapPtr pPortD;
 extern GPIORegisterMapPtr pPortE;
 extern GPIORegisterMapPtr pPortF;
 
-extern GPTMRegisterMapPtr p1632Timer0;
-extern GPTMRegisterMapPtr p1632Timer1;
-extern GPTMRegisterMapPtr p1632Timer2;
-extern GPTMRegisterMapPtr p1632Timer3;
-extern GPTMRegisterMapPtr p1632Timer4;
-extern GPTMRegisterMapPtr p1632Timer5;
-extern GPTMRegisterMapPtr p3264Timer0;
-extern GPTMRegisterMapPtr p3264Timer1;
-extern GPTMRegisterMapPtr p3264Timer2;
-extern GPTMRegisterMapPtr p3264Timer3;
-extern GPTMRegisterMapPtr p3264Timer4;
-extern GPTMRegisterMapPtr p3264Timer5;
+extern GPTMRegisterMapPtr pTimer0;
+extern GPTMRegisterMapPtr pTimer1;
+extern GPTMRegisterMapPtr pTimer2;
+extern GPTMRegisterMapPtr pTimer3;
+extern GPTMRegisterMapPtr pTimer4;
+extern GPTMRegisterMapPtr pTimer5;
+extern GPTMRegisterMapPtr pWtimer0;
+extern GPTMRegisterMapPtr pWtimer1;
+extern GPTMRegisterMapPtr pWtimer2;
+extern GPTMRegisterMapPtr pWtimer3;
+extern GPTMRegisterMapPtr pWtimer4;
+extern GPTMRegisterMapPtr pWtimer5;
 
 extern ADCRegisterMapPtr pAdc0;
 extern ADCRegisterMapPtr pAdc1;
