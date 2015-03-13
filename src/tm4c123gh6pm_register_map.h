@@ -5,8 +5,8 @@
 // License:
 // This software is provided as is. No warranty of any kind. You may use it, modify it, do whatever
 // you want with it. It can be used in any projects, open source or commercial. There is only one
-// condition for using it. Please include (or do not remove) the orignal authors comment lines
-// somewhere at the top of the file
+// condition for using it. Please include (or do not remove) the 'Orignal authors:' comment lines
+// somewhere at the top of the file, i.e. the following lines
 //
 // Original authors: Rail Shafigulin and anonymous student from UT. 6.02X Embedded Systems - Shape
 //                   the world class.
