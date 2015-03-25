@@ -128,7 +128,6 @@ typedef union GPIOODRRegister_t {
   } field;
 } GPIODRRegister;
 
-
 typedef union GPIOPURRegister_t {
   uint32_t value;
   struct {
@@ -514,23 +513,79 @@ typedef struct GPTMRegisterMap_t {
 typedef GPTMRegisterMap volatile * const GPTMRegisterMapPtr;
 
 /* System Control */
-typedef union RISRegister_t {
+typedef union DID0Register_t {
+  uint32_t value;
+  struct {
+    uint32_t MINOR     : 8,
+             MAJOR     : 8,
+             CLASS     : 8,
+             reserved0 : 4,
+             VER       : 3,
+             reserved1 : 1;
+  } field;
+} DID0Register;
+
+typedef union DID1Register_t {
+  uint32_t value;
+  struct {
+    uint32_t QUAL     : 2,
+             ROHS     : 1,
+             PKG      : 2,
+             TEMP     : 3,
+             reserved : 5,
+             PINCOUNT : 3,
+             PARTNO   : 8,
+             FAM      : 4,
+             VER      : 4;
+  } field;
+} DID1Register;
+
+typedef union PBORCTLRegister_t {
   uint32_t value;
   struct {
     uint32_t reserved0 : 1,
-             BOR1RIS   : 1,
+             BOR1      : 1,
+             BOR0      : 1,
+             reserved1 : 29;
+  } field;
+} PBORCTLRegister;
+
+typedef union SystemControlInterruptRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t reserved0 : 1,
+             BOR1      : 1,
              reserved1 : 1,
-             MOFRIS    : 1,
+             MOF       : 1,
              reserved2 : 2,
-             PLLRIS    : 1,
-             USBPLLRIS : 1,
-             MOSCPURIS : 1,
+             PLLL      : 1,
+             USBPLLL   : 1,
+             MOSCPUP   : 1,
              reserved3 : 1,
-             VDDARIS   : 1,
-             BOR0RIS   : 1,
+             VDDA      : 1,
+             BOR0      : 1,
              reserved4 : 20;
   } field;
-} RISRegister;
+} SystemControlInterruptRegister;
+
+typedef RISRegister SystemControlInterruptRegister;
+typedef IMCRegister SystemControlInterruptRegister;
+typedef MISCRegister SystemControlInterruptRegister;
+
+typedef union RESCRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t EXT : 1,
+             POR : 1,
+             BOR : 1,
+             WDT0 : 1,
+             SW : 1,
+             WDT1 : 1,
+             reserved0 : 10,
+             MOSCFAIL : 1,
+             reserved1 : 15;
+  } field;
+} RESCRegister;
 
 typedef union RCCRegister_t {
   uint32_t value;
@@ -552,6 +607,56 @@ typedef union RCCRegister_t {
              reserved4 : 4;
   } field;
 } RCCRegister;
+
+typedef union GPIOHBCTLRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t PORTA    : 1,
+             PORTB    : 1,
+             PORTC    : 1,
+             PORTD    : 1,
+             PORTE    : 1,
+             PORTF    : 1,
+             reserved : 26;
+  } field;
+} GPIOHBCTLRegister;
+
+typedef union MOSCCTLRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t CVAL     : 1,
+             MOSCIM   : 1,
+             NOXTAL   : 1,
+             reserved : 29;
+  } field;
+} MOSCCTLRegister;
+
+typedef union DSLPCLKCFGRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t reserved0  : 1,
+             PIOSCPD    : 1,
+             reserved1  : 2,
+             DSOSCSRC   : 3,
+             reserved2  : 16,
+             DSDIVORIDE : 6,
+             reserved3  : 3;
+  } field;
+} DSLPCLKCFGRegister;
+
+typedef union SYSPROPRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t FPU       : 1,
+             reserved0 : 7,
+             FLASHLPM  : 1,
+             reserved1 : 1,
+             SRAMLPM   : 1,
+             SRAMSM    : 1,
+             PIOSCPDE  : 1,
+             reserved2 : 19;
+  } field;
+} SYSPROPRegister;
 
 typedef union RCGC0Register_t {
   uint32_t value;
@@ -642,16 +747,29 @@ typedef union RCGC2Register_t {
 } RCGC2Register;
 
 typedef struct SystemControlRegisterMap_t {
-  uint8_t       reserved0[0x050]; // 0x000
-  RISRegister   RIS;              // 0x050
-  uint8_t       reserved1[0x00C]; // 0x054
-  RCCRegister   RCC;              // 0x060
-  uint8_t       reserved2[0x00C]; // 0x064
-  RCC2Register  RCC2;             // 0x070
-  uint8_t       reserved3[0x08C]; // 0x074
-  RCGC0Register RCGC0;            // 0x100
-  RCGC1Register RCGC1;            // 0x104
-  RCGC2Register RCGC2;            // 0x108
+  DID0Register DID0; // 0x000
+  DID1Register DID1; // 0x004
+  uint8_t reserved0[0x028]; // 0x008
+  PBORCTLRegister PBORCTL; // 0x030
+  uint8_t reserved1[0x01C]; // 0x034
+  RISRegister RIS; // 0x050
+  RISRegister IMC; // 0x054
+  RISRegister MISC; // 0x058
+  RESCRegister RESC; // 0x05C
+  RCCRegister RCC; // 0x060
+  uint8_t reserved2[0x008]; // 0x064
+  GPIOHBCTLRegister GPIOHBCTL; // 0x06C
+  RCC2Register  RCC2; // 0x070
+  uint8_t reserved3[0x008]; // 0x074
+  MOSCCTLRegister MOSCCTL; // 0x07C
+  uint8_t reserved3[0x080]; // 0x080
+  RCGC0Register RCGC0; // 0x100
+  RCGC1Register RCGC1; // 0x104
+  RCGC2Register RCGC2; // 0x108
+  uint8_t reserved4[0x038]; // 0x10C
+  DSLPCLKCFGRegister DSLPCLKCFG; // 0x144
+  uint8_t reserved5[0x004]; // 0x148
+  SYSPROPRegister SYSPROP; // 0x14C
 } SystemControlRegisterMap;
 
 /* Define a const pointer to a volatile SystemControlRegisterMap */
