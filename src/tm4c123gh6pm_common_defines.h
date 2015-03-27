@@ -1,3 +1,19 @@
+// I've decided to write this file after I saw a post on piazza.com for the edX UT. 6.02X Embedded
+// Systems - Shape The World class. Some student partially mapped GPIO registers to a structure. I
+// thought it would be nice to have all the registers mapped.
+//
+// License:
+// This software is provided as is. No warranty of any kind. You may use it, modify it, do whatever
+// you want with it. It can be used in any projects, open source or commercial. There is only one
+// condition for using it. Please include (or do not remove) the 'Orignal authors:' comment lines
+// somewhere at the top of the file, i.e. the following lines
+//
+// Original authors: Rail Shafigulin and anonymous student from UT. 6.02X Embedded Systems - Shape
+//                   the world class.
+//
+// By the way if anyone is able to track down this student I would gladly include his/her name to
+// this file if he/she doesn't mind.
+
 #ifndef COMMON_DEFINES_H
 #define COMMON_DEFINES_H
 
@@ -32,10 +48,12 @@
     pPort##PORT->GPIOLOCK= LOCK; \
   } while(0)
 
-#define TURN_ON_PORT_CLK(PORT)                                  \
-  do {                                                          \
-    pSystemControl->RCGC2.field.GPIO##PORT = 1;                 \
-    pSystemControl->RCGC2.value |= pSystemControl->RCGC2.value; \
+// After clock for the port is turned on, it needs time to settle. Bitwise OR operation at the end
+// of the macro simply consumes cycles to give time for the clock to settle.
+#define TURN_ON_PORT_CLK(PORT)                                              \
+  do {                                                                      \
+    pLegacySystemControl->RCGC2.field.GPIO##PORT = 1;                       \
+    pLegacySystemControl->RCGC2.value |= pLegacySystemControl->RCGC2.value; \
   } while(0)
 
 #define SET_PORT_PINS_HIGH(PORT, PINS)                           \
@@ -53,10 +71,12 @@
     pPort##PORT->GPIODATA[(PINS) << GPIODATA_ADDR_SHIFT] ^= 0xFF; \
   } while(0)
 
-#define TURN_ON_ADC_CLK(NBR)                                    \
-  do {                                                          \
-    pSystemControl->RCGC0.field.ADC##NBR = 1;                   \
-    pSystemControl->RCGC0.value |= pSystemControl->RCGC0.value; \
+// After clock for the port is turned on, it needs time to settle. Bitwise OR operation at the end
+// of the macro simply consumes cycles to give time for the clock to settle.
+#define TURN_ON_ADC_CLK(NBR)                                                \
+  do {                                                                      \
+    pLegacySystemControl->RCGC0.field.ADC##NBR = 1;                         \
+    pLegacySystemControl->RCGC0.value |= pLegacySystemControl->RCGC0.value; \
   } while(0)
 
 #endif // COMMON_DEFINES_H

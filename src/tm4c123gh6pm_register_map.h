@@ -621,6 +621,25 @@ typedef union GPIOHBCTLRegister_t {
   } field;
 } GPIOHBCTLRegister;
 
+typedef union RCC2Register_t {
+  uint32_t value;
+  struct {
+    uint32_t reserved0  : 4,
+             OSCSRC2    : 3,
+             reserved1  : 4,
+             BYPASS2    : 1,
+             reserved2  : 1,
+             PWRDN2     : 1,
+             USBPWRDN   : 1,
+             reserved3  : 7,
+             SYSDIV2LSB : 1,
+             SYSDIV2    : 6,
+             reserved4  : 1,
+             DIV400     : 1,
+             USERCC2    : 1;
+  } field;
+} RCC2Register;
+
 typedef union MOSCCTLRegister_t {
   uint32_t value;
   struct {
@@ -658,31 +677,577 @@ typedef union SYSPROPRegister_t {
   } field;
 } SYSPROPRegister;
 
-typedef union RCGC0Register_t {
+typedef union PIOSCCALRegister_t {
   uint32_t value;
   struct {
-    uint32_t reserved0  : 3,
+    uint32_t UT        : 7,
+             reserved0 : 1,
+             UPDATE    : 1,
+             CAL       : 1,
+             reserved1 : 21,
+             UTEN      : 1;
+  } field;
+} PIOSCCALRegister;
+
+typedef union PIOSCSTATRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t CT        : 7,
+             reserved0 : 1,
+             RESULT    : 2,
+             reserved1 : 6,
+             DT        : 7,
+             reserved2 : 9;
+  } field;
+} PIOSCSTATRegister;
+
+typedef union PLLFREQ0Register_t {
+  uint32_t value;
+  struct {
+    uint32_t MINT     : 10,
+             MFRAC    : 10,
+             reserved : 12;
+  } field;
+} PLLFREQ0Register;
+
+typedef union PLLFREQ1Register_t {
+  uint32_t value;
+  struct {
+    uint32_t N         : 5,
+             reserved0 : 3,
+             Q         : 5,
+             reserved1 : 3,
+             reserved2 : 16;
+  } field;
+} PLLFREQ1Register;
+
+typedef union PLLSTATRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t LOCK     : 1,
+             reserved : 31;
+  } field;
+} PLLSTATRegister;
+
+typedef union LPPWRCFGRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t SRAMPM    : 2,
+             reserved0 : 2,
+             FLASHPM   : 2,
+             reserved1 : 26;
+  } field;
+} LPPWRCFGRegister;
+
+typedef LPPWRCFGRegister SLPPWRCFGRegister;
+typedef LPPWRCFGRegister DSLPPWRCFGRegister;
+
+typedef union LDOPCTLRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t VLDO     : 8,
+             reserved : 23,
+             VADJEN   : 1;
+  } field;
+} LDOPCTLRegister;
+
+typedef LDOPCTLRegister LDOSPCTLRegister;
+typedef LDOPCTLRegister LDODPCTLRegister;
+
+typedef union LDOSPCTLRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t NOPLL    : 8,
+             WITHPLL  : 8,
+             reserved : 16;
+  } field;
+} LDOSPCTLRegister;
+
+typedef union LDODPCALRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t _30KHZ   : 8,
+             NOPLL    : 8,
+             reserved : 16;
+  } field;
+} LDODPCALRegister;
+
+typedef union SDPMSTRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t SPDERR    : 1,
+             FPDERR    : 1,
+             PPDERR    : 1,
+             LDMINERR  : 1,
+             LSMINERR  : 1,
+             reserved0 : 1,
+             LMAXERR   : 1,
+             PPDW      : 1,
+             reserved1 : 8,
+             PRACT     : 1,
+             LOWPWR    : 1,
+             FLASHLP   : 1,
+             LDOUA     : 1,
+             reserved2 : 12;
+  } field;
+} SDPMSTRegister;
+
+typedef union PPWDRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t P0       : 1,
+             P1       : 1,
+             reserved : 30;
+  } field;
+} PPWDRegister;
+
+typedef union PPTIMERRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t P0       : 1,
+             P1       : 1,
+             P2       : 1,
+             P3       : 1,
+             P4       : 1,
+             P5       : 1,
+             reserved : 26;
+  } field;
+} PPTIMERRegister;
+
+typedef union PPGPIORegister_t {
+  uint32_t value;
+  struct {
+    uint32_t P0       : 1,
+             P1       : 1,
+             P2       : 1,
+             P3       : 1,
+             P4       : 1,
+             P5       : 1,
+             P6       : 1,
+             P7       : 1,
+             P8       : 1,
+             P9       : 1,
+             P10      : 1,
+             P11      : 1,
+             P12      : 1,
+             P13      : 1,
+             P14      : 1,
+             reserved : 17;
+  } field;
+} PPGPIORegister;
+
+typedef union PP0Register_t {
+  uint32_t value;
+  struct {
+    uint32_t P0       : 1,
+             reserved : 31;
+  } field;
+} PP0Register;
+
+typedef PP0Register PPDMARegister;
+typedef PP0Register PPHIBRegister;
+typedef PP0Register PPUSBRegister;
+typedef PP0Register PPACMPRegister;
+typedef PP0Register PPEEPROMRegister;
+
+typedef union PPUARTRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t P0       : 1,
+             P1       : 1,
+             P2       : 1,
+             P3       : 1,
+             P4       : 1,
+             P5       : 1,
+             P6       : 1,
+             P7       : 1,
+             reserved : 24;
+  } field;
+} PPUARTRegister;
+
+typedef union PPSSIRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t P0       : 1,
+             P1       : 1,
+             P2       : 1,
+             P3       : 1,
+             reserved : 28;
+  } field;
+} PPSSIRegister;
+
+typedef union PPI2CRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t P0       : 1,
+             P1       : 1,
+             P2       : 1,
+             P3       : 1,
+             P4       : 1,
+             P5       : 1,
+             reserved : 26;
+  } field;
+} PPI2CRegister;
+
+typedef union PP1Register_t {
+  uint32_t value;
+  struct {
+    uint32_t P0 : 1,
+             P1 : 1,
+             reserved : 30;
+  } field;
+} PP1Register;
+
+typedef union PPWTIMERRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t P0       : 1,
+             P1       : 1,
+             P2       : 1,
+             P3       : 1,
+             P4       : 1,
+             P5       : 1,
+             reserved : 26;
+  } field;
+} PPWTIMERRegister;
+
+
+
+typedef PP1Register PPCANRegister;
+typedef PP1Register PPADCRegister;
+typedef PP1Register PPPWMRegister;
+typedef PP1Register PPQEIRegister;
+
+typedef struct SystemControlRegisterMap_t {
+  DID0Register DID0; // 0x000
+  DID1Register DID1; // 0x004
+  uint8_t reserved0[0x028]; // 0x008
+  PBORCTLRegister PBORCTL; // 0x030
+  uint8_t reserved1[0x01C]; // 0x034
+  RISRegister RIS; // 0x050
+  IMCRegister IMC; // 0x054
+  MISCRegister MISC; // 0x058
+  RESCRegister RESC; // 0x05C
+  RCCRegister RCC; // 0x060
+  uint8_t reserved2[0x008]; // 0x064
+  GPIOHBCTLRegister GPIOHBCTL; // 0x06C
+  RCC2Register RCC2; // 0x070
+  uint8_t reserved3[0x008]; // 0x074
+  MOSCCTLRegister MOSCCTL; // 0x07C
+  uint8_t reserved4[0x0C4]; // 0x080
+  DSLPCLKCFGRegister DSLPCLKCFG; // 0x144
+  uint8_t reserved5[0x004]; // 0x148
+  SYSPROPRegister SYSPROP; // 0x14C
+  PIOSCCALRegister PIOSCCAL; // 0x150
+  PIOSCSTATRegister PIOSCSTAT; // 0x154
+  uint8_t reserved6[0x008]; // 0x158
+  PLLFREQ0Register PLLFREQ0; // 0x160
+  PLLFREQ1Register PLLFREQ1; // 0x164
+  PLLSTATRegister PLLSTAT; // 0x168
+  uint8_t reserved7[0x01C]; // 0x16C
+  SLPPWRCFGRegister SLPPWRCFG; // 0x188
+  DSLPPWRCFGRegister DSLPPWRCFG; // 0x18C
+  uint8_t reserved8[0x024]; // 0x190
+  LDOSPCTLRegister LDOSPCTL; // 0x1B4
+  LDOSPCALRegister LDOSPCAL; // 0x1B8
+  LDODPCTLRegister LDODPCTL; // 0x1BC
+  LDODPCALRegister LDODPCAL; // 0x1C0
+  uint8_t reserved9[0x008]; // 0x1C4
+  SDPMSTRegister SDPMST; // 0x1CC
+  uint8_t reserved10[0x130]; // 0x1D0
+  PPWDRegister PPWD; // 0x300
+  PPTIMERRegister PPTIMER; // 0x304
+  PPGPIORegister PPGPIO; // 0x308
+  PPDMARegister PPDMA; // 0x30C
+  uint8_t reserved11[0x04]; // 0x310
+  PPHIBRegister PPHIB; // 0x314
+  PPUARTRegister PPUART; // 0x318
+  PPSSIRegister PPSSI; // 0x31C
+  PPI2CRegister PPI2C; // 0x320
+  uint8_t reserved12[0x04]; // 0x324
+  PPUSBRegister PPUSB; // 0x328
+  uint8_t reserved13[0x08]; // 0x32C
+  PPCANRegister PPCAN; // 0x334
+  PPADCRegister PPADC; // 0x338
+  PPACMPRegister PPACMP; // 0x33C
+  PPPWMRegister PPPWM; // 0x340
+  PPQEIRegister PPQEI; // 0x344
+  uint8_t reserved14[0x010]; // 0x348
+  PPEEPROMRegister PPEEPROM; // 0x358
+  PPWTIMERRegister PPWTIMER; // 0x35C
+} SystemControlRegisterMap;
+
+/* Define a const pointer to a volatile SystemControlRegisterMap */
+typedef SystemControlRegisterMap volatile * const SystemControlRegisterMapPtr;
+
+/* Legacy System Control */
+typedef union DC0Register_t {
+  uint32_t value;
+  struct {
+    uint32_t FLASHSZ : 16,
+             SRAMSZ  : 16;
+  } field;
+} DC0Register;
+
+typedef union DC1Register_t {
+  uint32_t value;
+  struct {
+    uint32_t JTAG       : 1,
+             SWD        : 1,
+             SWO        : 1,
              WDT0       : 1,
-             reserved1  : 2,
+             PLL        : 1,
+             TEMPSNS    : 1,
              HIB        : 1,
-             reserved2  : 1,
+             MPU        : 1,
              MAXADC0SPD : 2,
              MAXADC1SPD : 2,
-             reserved3  : 4,
+             MINSYSDIV  : 4,
              ADC0       : 1,
              ADC1       : 1,
-             reserved4  : 2,
+             reserved0  : 2,
              PWM0       : 1,
-             reserved5  : 3,
+             PWM1       : 1,
+             reserved1  : 2,
              CAN0       : 1,
              CAN1       : 1,
-             reserved6  : 2,
+             reserved2  : 2,
              WDT1       : 1,
-             reserved7  : 3;
+             reserved3  : 3;
   } field;
-} RCGC0Register;
+} DC1Register;
 
-typedef union RCGC1Register_t {
+typedef union DC2Register_t {
+  uint32_t value;
+  struct {
+    uint32_t UART0     : 1,
+             UART1     : 1,
+             UART2     : 1,
+             reserved0 : 1,
+             SSI0      : 1,
+             SSI1      : 1,
+             reserved1 : 2,
+             QEI0      : 1,
+             QEI1      : 1,
+             reserved2 : 2,
+             I2C0      : 1,
+             I2C0HS    : 1,
+             I2C1      : 1,
+             I2C1HS    : 1,
+             TIMER0    : 1,
+             TIMER1    : 1,
+             TIMER2    : 1,
+             TIMER3    : 1,
+             reserved3 : 4,
+             COMP0     : 1,
+             COMP1     : 1,
+             COMP2     : 1,
+             reserved4 : 1,
+             I2S0      : 1,
+             reserved5 : 1,
+             EPI0      : 1,
+             reserved6 : 1;
+  } field;
+} DC2Register;
+
+typedef union DC3Register_t {
+  uint32_t value;
+  struct {
+    uint32_t PWM0     : 1,
+             PWM1     : 1,
+             PWM2     : 1,
+             PWM3     : 1,
+             PWM4     : 1,
+             PWM5     : 1,
+             C0MINUS  : 1,
+             C0PLUS   : 1,
+             C0O      : 1,
+             C1MINUS  : 1,
+             C1PLUS   : 1,
+             C1O      : 1;
+             C2MINUS  : 1,
+             C2PLUS   : 1,
+             C2O      : 1,
+             PWMFAULT : 1,
+             ADC0AIN0 : 1,
+             ADC0AIN1 : 1,
+             ADC0AIN2 : 1,
+             ADC0AIN3 : 1,
+             ADC0AIN4 : 1,
+             ADC0AIN5 : 1,
+             ADC0AIN6 : 1,
+             ADC0AIN7 : 1,
+             CCP0     : 1,
+             CCP1     : 1,
+             CCP2     : 1,
+             CCP3     : 1,
+             CCP4     : 1,
+             CCP5     : 1,
+             reserved : 1,
+             _32KHZ   : 1;
+  } field;
+} DC3Register;
+
+typedef union DC4Register_t {
+  uint32_t value;
+  struct {
+    uint32_t GPIOA     : 1,
+             GPIOB     : 1,
+             GPIOC     : 1,
+             GPIOD     : 1,
+             GPIOE     : 1,
+             GPIOF     : 1,
+             GPIOG     : 1,
+             GPIOH     : 1,
+             GPIOJ     : 1,
+             reserved0 : 3,
+             ROM       : 1,
+             UDMA      : 1,
+             CCP6      : 1,
+             CCP7      : 1,
+             reserved1 : 2,
+             PICAL     : 1,
+             reserved2 : 5,
+             E1588     : 1,
+             reserved3 : 3,
+             EMAC0     : 1,
+             reserved4 : 1,
+             EPHY0     : 1,
+             reserved5 : 1;
+  } field;
+} DC4Register;
+
+typedef union DC5Register_t {
+  uint32_t value;
+  struct {
+    uint32_t PWM0      : 1,
+             PWM1      : 1,
+             PWM2      : 1,
+             PWM3      : 1,
+             PWM4      : 1,
+             PWM5      : 1,
+             PWM6      : 1,
+             PWM7      : 1,
+             reserved0 : 12,
+             PWMESYNC  : 1,
+             PWMEFLT   : 1,
+             reserved1 : 2,
+             PWMFAULT0 : 1,
+             PWMFAULT1 : 1,
+             PWMFAULT2 : 1,
+             PWMFAULT3 : 1,
+             reserved1 : 4;
+  } field;
+} DC5Register;
+
+typedef union DC6Register_t {
+  uint32_t value;
+  struct {
+    uint32_t USB0      : 2,
+             reserved0 : 2,
+             USB0PHY   : 1,
+             reserved1 : 27;
+  } field;
+} DC6Register;
+
+typedef union DC7Register_t {
+  uint32_t value;
+  struct {
+    uint32_t DMACH0   : 1,
+             DMACH1   : 1,
+             DMACH2   : 1,
+             DMACH3   : 1,
+             DMACH4   : 1,
+             DMACH5   : 1,
+             DMACH6   : 1,
+             DMACH7   : 1,
+             DMACH8   : 1,
+             DMACH9   : 1,
+             DMACH10  : 1,
+             DMACH11  : 1,
+             DMACH12  : 1,
+             DMACH13  : 1,
+             DMACH14  : 1,
+             DMACH15  : 1,
+             DMACH16  : 1,
+             DMACH17  : 1,
+             DMACH18  : 1,
+             DMACH19  : 1,
+             DMACH20  : 1,
+             DMACH21  : 1,
+             DMACH22  : 1,
+             DMACH23  : 1,
+             DMACH24  : 1,
+             DMACH25  : 1,
+             DMACH26  : 1,
+             DMACH27  : 1,
+             DMACH28  : 1,
+             DMACH29  : 1,
+             DMACH30  : 1,
+             reserved : 1;
+  } field;
+} DC7Register;
+
+typedef union DC8Register_t {
+  uint32_t value;
+  struct {
+    uint32_t ADC0AIN0  : 1,
+             ADC0AIN1  : 1,
+             ADC0AIN2  : 1,
+             ADC0AIN3  : 1,
+             ADC0AIN4  : 1,
+             ADC0AIN5  : 1,
+             ADC0AIN6  : 1,
+             ADC0AIN7  : 1,
+             ADC0AIN8  : 1,
+             ADC0AIN9  : 1,
+             ADC0AIN10 : 1,
+             ADC0AIN11 : 1,
+             ADC0AIN12 : 1,
+             ADC0AIN13 : 1,
+             ADC0AIN14 : 1,
+             ADC0AIN15 : 1,
+             ADC1AIN0  : 1,
+             ADC1AIN1  : 1,
+             ADC1AIN2  : 1,
+             ADC1AIN3  : 1,
+             ADC1AIN4  : 1,
+             ADC1AIN5  : 1,
+             ADC1AIN6  : 1,
+             ADC1AIN7  : 1,
+             ADC1AIN8  : 1,
+             ADC1AIN9  : 1,
+             ADC1AIN10 : 1,
+             ADC1AIN11 : 1,
+             ADC1AIN12 : 1,
+             ADC1AIN13 : 1,
+             ADC1AIN14 : 1,
+             ADC1AIN15 : 1;
+  } field;
+} DC8Register;
+
+typedef union SRCR0Register_t {
+  uint32_t value;
+  struct {
+    uint32_t reserved0 : 3,
+             WDT0      : 1,
+             reserved1 : 2,
+             HIB       : 1,
+             reserved2 : 9,
+             ADC0      : 1,
+             ADC1      : 1,
+             reserved3 : 2,
+             PWM0      : 1,
+             reserved4 : 3,
+             CAN0      : 1,
+             CAN1      : 1,
+             reserved5 : 2,
+             WDT1      : 1,
+             reserved6 : 3;
+  } field;
+} SRCR0Register;
+
+typedef union SRCR1Register_t {
   uint32_t value;
   struct {
     uint32_t UART0     : 1,
@@ -708,28 +1273,9 @@ typedef union RCGC1Register_t {
              COMP1     : 1,
              reserved6 : 6;
   } field;
-} RCGC1Register;
+} SRCR1Register;
 
-typedef union RCC2Register_t {
-  uint32_t value;
-  struct {
-    uint32_t reserved0  : 4,
-             OSCSRC2    : 3,
-             reserved1  : 4,
-             BYPASS2    : 1,
-             reserved2  : 1,
-             PWRDN2     : 1,
-             USBPWRDN   : 1,
-             reserved3  : 7,
-             SYSDIV2LSB : 1,
-             SYSDIV2    : 6,
-             reserved4  : 1,
-             DIV400     : 1,
-             USERCC2    : 1;
-  } field;
-} RCC2Register;
-
-typedef union RCGC2Register_t {
+typedef union SRCR2Register_t {
   uint32_t value;
   struct {
     uint32_t GPIOA     : 1,
@@ -744,36 +1290,178 @@ typedef union RCGC2Register_t {
              USB0      : 1,
              reserved2 : 15;
   } field;
-} RCGC2Register;
+} SRCR2Register;
 
-typedef struct SystemControlRegisterMap_t {
-  DID0Register DID0; // 0x000
-  DID1Register DID1; // 0x004
-  uint8_t reserved0[0x028]; // 0x008
-  PBORCTLRegister PBORCTL; // 0x030
-  uint8_t reserved1[0x01C]; // 0x034
-  RISRegister RIS; // 0x050
-  RISRegister IMC; // 0x054
-  RISRegister MISC; // 0x058
-  RESCRegister RESC; // 0x05C
-  RCCRegister RCC; // 0x060
-  uint8_t reserved2[0x008]; // 0x064
-  GPIOHBCTLRegister GPIOHBCTL; // 0x06C
-  RCC2Register  RCC2; // 0x070
-  uint8_t reserved3[0x008]; // 0x074
-  MOSCCTLRegister MOSCCTL; // 0x07C
-  uint8_t reserved3[0x080]; // 0x080
-  RCGC0Register RCGC0; // 0x100
-  RCGC1Register RCGC1; // 0x104
-  RCGC2Register RCGC2; // 0x108
-  uint8_t reserved4[0x038]; // 0x10C
-  DSLPCLKCFGRegister DSLPCLKCFG; // 0x144
-  uint8_t reserved5[0x004]; // 0x148
-  SYSPROPRegister SYSPROP; // 0x14C
-} SystemControlRegisterMap;
+typedef union RCGC0Register_t {
+  uint32_t value;
+  struct {
+    uint32_t reserved0  : 3,
+             WDT0       : 1,
+             reserved1  : 2,
+             HIB        : 1,
+             reserved2  : 1,
+             MAXADC0SPD : 2,
+             MAXADC1SPD : 2,
+             reserved3  : 4,
+             ADC0       : 1,
+             ADC1       : 1,
+             reserved4  : 2,
+             PWM0       : 1,
+             reserved5  : 3,
+             CAN0       : 1,
+             CAN1       : 1,
+             reserved6  : 2,
+             WDT1       : 1,
+             reserved7  : 3;
+  } field;
+} RCGC0Register;
+
+typedef union CGC1Register_t {
+  uint32_t value;
+  struct {
+    uint32_t UART0     : 1,
+             UART1     : 1,
+             UART2     : 1,
+             reserved0 : 1,
+             SSI0      : 1,
+             SSI1      : 1,
+             reserved1 : 2,
+             QEI0      : 1,
+             QEI1      : 1,
+             reserved2 : 2,
+             I2C0      : 1,
+             reserved3 : 1,
+             I2C1      : 1,
+             reserved4 : 1,
+             TIMER0    : 1,
+             TIMER1    : 1,
+             TIMER2    : 1,
+             TIMER3    : 1,
+             reserved5 : 4,
+             COMP0     : 1,
+             COMP1     : 1,
+             reserved6 : 6;
+  } field;
+} CGC1Register;
+
+typedef CGC1Register RCGC1Register;
+typedef CGC1Register SCGC1Register;
+typedef CGC1Register DCGC1Register;
+
+typedef union CGC2Register_t {
+  uint32_t value;
+  struct {
+    uint32_t GPIOA     : 1,
+             GPIOB     : 1,
+             GPIOC     : 1,
+             GPIOD     : 1,
+             GPIOE     : 1,
+             GPIOF     : 1,
+             reserved0 : 7,
+             UDMA      : 1,
+             reserved1 : 2,
+             USB0      : 1,
+             reserved2 : 15;
+  } field;
+} CGC2Register;
+
+typedef CGC2Register RCGC2Register;
+typedef CGC2Register SCGC2Register;
+typedef CGC2Register DCGC2Register;
+
+typedef union CGC0Register_t {
+  uint32_t value;
+  struct {
+    uint32_t reserved0 : 3,
+             WDT0      : 1,
+             reserved1 : 2,
+             HIB       : 1,
+             reserved2 : 9,
+             ADC0      : 1,
+             ADC1      : 1,
+             reserved4 : 2,
+             PWM0      : 1,
+             reserved5 : 3,
+             CAN0      : 1,
+             CAN1      : 1,
+             reserved6 : 2,
+             WDT1      : 1,
+             reserved7 : 3;
+  } field;
+} CGC0Register;
+
+typedef CGC0Register SCGC0Register;
+typedef CGC0Register DCGC0Register;
+
+typedef union DC9Register_t {
+  uint32_t value;
+  struct {
+    uint32_t ADC0DC0   : 1,
+             ADC0DC1   : 1,
+             ADC0DC2   : 1,
+             ADC0DC3   : 1,
+             ADC0DC4   : 1,
+             ADC0DC5   : 1,
+             ADC0DC6   : 1,
+             ADC0DC7   : 1,
+             reserved0 : 8,
+             ADC1DC0   : 1,
+             ADC1DC1   : 1,
+             ADC1DC2   : 1,
+             ADC1DC3   : 1,
+             ADC1DC4   : 1,
+             ADC1DC5   : 1,
+             ADC1DC6   : 1,
+             ADC1DC7   : 1,
+             reserved1 : 8;
+  } field;
+} DC9Register;
+
+typedef union NVMSTATRegister_t {
+  uint32_t value;
+  struct {
+    uint32_t FWB      : 1,
+             reserved : 31;
+  } field;
+} NVMSTATRegister;
+
+typedef struct LegacySystemControlRegisterMap_t {
+                                    // Offset
+  uint8_t         reserved0[0x008]; // 0x000
+  DC0Register     DC0;              // 0x008
+  uint8_t         reserved1[0x004]; // 0x00C
+  DC1Register     DC1;              // 0x010
+  DC2Register     DC2;              // 0x014
+  DC3Register     DC3;              // 0x018
+  DC4Register     DC4;              // 0x01C
+  DC5Register     DC5;              // 0x020
+  DC6Register     DC6;              // 0x024
+  DC7Register     DC7;              // 0x028
+  DC8Register     DC8;              // 0x02C
+  uint8_t         reserved2[0x010]; // 0x030
+  SRCR0Register   SRCR0;            // 0x040
+  SRCR1Register   SRCR1;            // 0x044
+  SRCR2Register   SRCR2;            // 0x048
+  uint8_t         reserved3[0x0B4]; // 0x04C
+  RCGC0Register   RCGC0;            // 0x100
+  RCGC1Register   RCGC1;            // 0x104
+  RCGC2Register   RCGC2;            // 0x108
+  uint8_t         reserved4[0x004]; // 0x10C
+  SCGC0Register   SCGC0;            // 0x110
+  SCGC1Register   SCGC1;            // 0x114
+  SCGC2Register   SCGC2;            // 0x118
+  uint8_t         reserved5[0x004]; // 0x11C
+  DCGC0Register   DCGC0;            // 0x120
+  DCGC1Register   DCGC1;            // 0x124
+  DCGC2Register   DCGC2;            // 0x128
+  uint8_t         reserved6[0x064]; // 0x12C
+  DC9Register     DC9;              // 0x190
+  uint8_t         reserved7[0x00C]; // 0x194
+  NVMSTATRegister NVMSTAT;          // 0x1A0
+} LegacySystemControlRegisterMap;
 
 /* Define a const pointer to a volatile SystemControlRegisterMap */
-typedef SystemControlRegisterMap volatile * const SystemControlRegisterMapPtr;
+typedef LegacySystemControlRegisterMap volatile * const LegacySystemControlRegisterMapPtr;
 
 /* System Exception*/
 typedef union SYSEXCRegister_t {
@@ -2020,7 +2708,8 @@ typedef SSIRegisterMap volatile * const SSIRegisterMapPtr;
 #define SYSTEM_TICK_REGISTER_BASE_ADDR     (PERIPHERALS_REGISTER_BASE_ADDR)
 #define NVIC_REGISTER_BASE_ADDR            (PERIPHERALS_REGISTER_BASE_ADDR)
 
-#define SYSTEM_CONTROL_REGISTER_BASE_ADDR ((uint32_t)0x400FE000)
+#define SYSTEM_CONTROL_REGISTER_BASE_ADDR        ((uint32_t)0x400FE000)
+#define LEGACY_SYSTEM_CONTROL_REGISTER_BASE_ADDR SYSTEM_CONTROL_REGISTER_BASE_ADDR
 
 #define SYSTEM_EXCEPTION_REGISTER_BASE_ADDR ((uint32_t)0x400F9000)
 
@@ -2103,6 +2792,7 @@ extern SSIRegisterMapPtr pSsi2;
 extern SSIRegisterMapPtr pSsi3;
 
 extern SystemControlRegisterMapPtr pSystemControl;
+extern LegacySystemControlRegisterMapPtr pLegacySystemControl;
 
 extern SystemExceptionRegisterMapPtr pSystemException;
 

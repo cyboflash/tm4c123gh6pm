@@ -59,5 +59,6 @@ ADCRegisterMapPtr pAdc0 = (ADCRegisterMapPtr)ADC0_REGISTER_BASE_ADDR;
 ADCRegisterMapPtr pAdc1 = (ADCRegisterMapPtr)ADC1_REGISTER_BASE_ADDR;
 
 SystemControlRegisterMapPtr pSystemControl = (SystemControlRegisterMapPtr)SYSTEM_CONTROL_REGISTER_BASE_ADDR;
+LegacySystemControlRegisterMapPtr pLegacySystemControl = (LegacySystemControlRegisterMapPtr)LEGACY_SYSTEM_CONTROL_REGISTER_BASE_ADDR;
 
 SystemExceptionRegisterMapPtr pSystemException = (SystemExceptionRegisterMapPtr)SYSTEM_EXCEPTION_REGISTER_BASE_ADDR;
