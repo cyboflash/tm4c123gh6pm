@@ -801,7 +801,7 @@ typedef union PPWDRegister_t {
   } field;
 } PPWDRegister;
 
-typedef union PPTIMERRegister_t {
+typedef union PP0RRegister_t {
   uint32_t value;
   struct {
     uint32_t P0       : 1,
@@ -812,7 +812,10 @@ typedef union PPTIMERRegister_t {
              P5       : 1,
              reserved : 26;
   } field;
-} PPTIMERRegister;
+} PP0RRegister;
+
+typedef PP0Register PPTIMERRegister;
+typedef PP0Register PPWTIMERRegister;
 
 typedef union PPGPIORegister_t {
   uint32_t value;
@@ -836,19 +839,19 @@ typedef union PPGPIORegister_t {
   } field;
 } PPGPIORegister;
 
-typedef union PP0Register_t {
+typedef union PP1Register_t {
   uint32_t value;
   struct {
     uint32_t P0       : 1,
              reserved : 31;
   } field;
-} PP0Register;
+} PP1Register;
 
-typedef PP0Register PPDMARegister;
-typedef PP0Register PPHIBRegister;
-typedef PP0Register PPUSBRegister;
-typedef PP0Register PPACMPRegister;
-typedef PP0Register PPEEPROMRegister;
+typedef PP1Register PPDMARegister;
+typedef PP1Register PPHIBRegister;
+typedef PP1Register PPUSBRegister;
+typedef PP1Register PPACMPRegister;
+typedef PP1Register PPEEPROMRegister;
 
 typedef union PPUARTRegister_t {
   uint32_t value;
@@ -889,29 +892,14 @@ typedef union PPI2CRegister_t {
   } field;
 } PPI2CRegister;
 
-typedef union PP1Register_t {
+typedef union PP2Register_t {
   uint32_t value;
   struct {
     uint32_t P0 : 1,
              P1 : 1,
              reserved : 30;
   } field;
-} PP1Register;
-
-typedef union PPWTIMERRegister_t {
-  uint32_t value;
-  struct {
-    uint32_t P0       : 1,
-             P1       : 1,
-             P2       : 1,
-             P3       : 1,
-             P4       : 1,
-             P5       : 1,
-             reserved : 26;
-  } field;
-} PPWTIMERRegister;
-
-
+} PP2Register;
 
 typedef PP1Register PPCANRegister;
 typedef PP1Register PPADCRegister;
