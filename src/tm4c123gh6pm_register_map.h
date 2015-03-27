@@ -801,7 +801,7 @@ typedef union PPWDRegister_t {
   } field;
 } PPWDRegister;
 
-typedef union PP0RRegister_t {
+typedef union PP0Register_t {
   uint32_t value;
   struct {
     uint32_t P0       : 1,
@@ -812,7 +812,7 @@ typedef union PP0RRegister_t {
              P5       : 1,
              reserved : 26;
   } field;
-} PP0RRegister;
+} PP0Register;
 
 typedef PP0Register PPTIMERRegister;
 typedef PP0Register PPWTIMERRegister;
