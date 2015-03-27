@@ -1,2 +1,5 @@
+# Ignore project settings.
 .project/**
+
+# Ignore YouCompleteMe configuration.
 .ycm_extra_conf.py*
